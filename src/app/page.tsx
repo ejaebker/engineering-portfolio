@@ -1,48 +1,65 @@
 import Navbar from './components/Navbar';
+import Publications from './components/Publications';
+//import ProjectCard from './components/ProjectCard'; // We'll update this next
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="relative pb-20">
       <Navbar />
       
-      <main className="max-w-5xl mx-auto px-6 pt-32">
+      <main className="max-w-5xl mx-auto px-6 pt-32 space-y-32">
+        
         {/* HERO SECTION */}
-        <section className="py-20 border-l-2 border-blue-500 pl-8 ml-2">
-          <h1 className="text-5xl font-bold mb-6 font-mono tracking-tighter">
-            ELECTRICAL <br />
-            <span className="text-blue-500 underline"></span> ENGINEER
+        <section className="relative">
+          {/* Subtle glow effect behind text */}
+          <div className="absolute -left-20 -top-20 w-64 h-64 bg-blue-600/10 blur-[120px]" />
+          
+          <h1 className="text-6xl font-black tracking-tighter mb-4 font-mono">
+            E. JAEBKER<span className="text-blue-500 animate-pulse">_</span>
           </h1>
-          <p className="text-zinc-400 text-lg max-w-xl leading-relaxed">
-            Specializing in embedded systems, power electronics, and scalable 
-            web architecture. Currently building at the intersection of bits and atoms.
+          <p className="text-zinc-400 text-xl max-w-2xl font-mono border-l border-blue-500 pl-6">
+            Systems Engineer // Hardware + Software
           </p>
-          <div className="mt-8 flex gap-4">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-mono text-sm transition-all">
-              VIEW_REPOS
-            </button>
-            <button className="border border-zinc-700 hover:border-zinc-500 px-6 py-2 rounded-md font-mono text-sm transition-all">
+          
+          <div className="mt-10 flex items-center gap-6">
+            <a href="https://www.linkedin.com/in/eric-jaebker-57b160291/" target="_blank" rel="noopener noreferrer" className="text-sm font-mono text-blue-400 hover:text-white transition-colors border-b border-blue-400/30">
+              LINKEDIN
+            </a>
+            <a href="/resume.pdf" className="text-sm font-mono text-blue-400 hover:text-white transition-colors border-b border-blue-400/30">
               DOWNLOAD_CV
-            </button>
+            </a>
           </div>
         </section>
 
-        {/* PROJECT SECTION HEADER */}
-        <section id="projects" className="py-20">
-          <div className="flex items-center gap-4 mb-12">
-            <h2 className="text-2xl font-bold font-mono uppercase tracking-widest">Active Projects</h2>
-            <div className="h-[px] flex-1 bg-zinc-800"></div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* We will build a ProjectCard component next to go here */}
-            <div className="h-64 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center italic text-zinc-600">
-              Project Component Pending...
-            </div>
-            <div className="h-64 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center italic text-zinc-600">
-              Project Component Pending...
-            </div>
+        {/* PROJECTS SECTION - COMMENTED OUT */}
+        {/*
+        <section id="projects">
+          <h2 className="text-xs font-mono text-blue-500 mb-8 tracking-[0.3em] uppercase underline underline-offset-8">
+            01. Featured_Projects
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+             <ProjectCard 
+                title="Autonomous Rover" 
+                description="LiDAR-based navigation on embedded Linux."
+                tags={["C++", "ROS2"]}
+             />
+             <ProjectCard 
+                title="Custom PCB" 
+                description="Mixed-signal board for high-speed data acquisition."
+                tags={["KiCad", "Embedded"]}
+             />
           </div>
         </section>
+        */}
+
+        {/* PUBLICATIONS SECTION */}
+        <section id="publications">
+          <h2 className="text-xs font-mono text-blue-500 mb-8 tracking-[0.3em] uppercase underline underline-offset-8">
+            02. Research_&_Publications
+          </h2>
+          <Publications />
+        </section>
+
       </main>
     </div>
   );
