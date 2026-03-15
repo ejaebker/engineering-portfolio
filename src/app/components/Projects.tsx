@@ -58,7 +58,7 @@ export default function Projects() {
               alt={currentProject.title}
               className="w-full h-80 object-cover rounded-xl border border-blue-500/30 group-hover:border-blue-500/60 transition-all duration-300"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
 
           {/* Content Section - Right */}

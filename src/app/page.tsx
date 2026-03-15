@@ -1,11 +1,15 @@
-﻿import Navbar from './components/Navbar';
+﻿import Image from 'next/image';
+import Navbar from './components/Navbar';
 import Publications from './components/Publications';
 import Projects from './components/Projects';
 import AnimatedSection from './components/AnimatedSection';
+import ThemeToggle from './components/ThemeToggle';
+
 
 export default function Home() {
   return (
     <div className="relative pb-20">
+      <ThemeToggle />
       <Navbar />
 
       <main className="max-w-5xl mx-auto px-6 pt-28 space-y-28 scroll-smooth">
@@ -39,7 +43,7 @@ export default function Home() {
                   LINKEDIN
                 </a>
                 <a
-                  href="/cv.pdf"
+                  href="/WINTER 2026 resume.pdf"
                   className="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-3 text-sm font-semibold tracking-wide text-white/80 transition hover:text-white hover:border-white hover:bg-white/10"
                 >
                   DOWNLOAD CV
@@ -47,13 +51,17 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: Profile Picture Placeholder */}
+            {/* Right: Profile Picture */}
             <div className="flex justify-center">
-              <div className="w-64 h-64 rounded-2xl bg-linear-to-br from-blue-500/20 to-purple-500/20 border border-blue-500/30 flex items-center justify-center overflow-hidden">
-                <div className="text-center">
-                  <p className="text-zinc-400 font-mono text-sm">Your Photo Here</p>
-                  <p className="text-zinc-500 text-xs mt-2">Replace with your profile image</p>
-                </div>
+              <div className="w-64 h-64 rounded-2xl overflow-hidden border border-blue-500/30 shadow-lg shadow-blue-500/20">
+                <Image
+                  src="/IMG_0741.jpg"
+                  alt="Eric Jaebker"
+                  width={256}
+                  height={256}
+                  className="w-full h-full object-cover"
+                  priority
+                />
               </div>
             </div>
           </div>
@@ -100,7 +108,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
-              href="ejaebker@purdue.edu"
+              href="mailto:ejaebker@purdue.edu"
               className="inline-flex items-center justify-center rounded-full bg-blue-500/90 px-8 py-3 text-sm font-semibold tracking-wide text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-400/90"
             >
               EMAIL ME
