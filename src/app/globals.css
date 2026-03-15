@@ -23,11 +23,50 @@
   color: white;
 }
 
+@keyframes float-background {
+  0%, 100% {
+    transform: translate(-5%, -5%) scale(1);
+  }
+  50% {
+    transform: translate(5%, 5%) scale(1.02);
+  }
+}
+
 body {
-  /* This creates a subtle grid of blue lines */
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: radial-gradient(circle at 15% 25%, rgba(59, 130, 246, 0.28), transparent 52%),
+              radial-gradient(circle at 75% 15%, rgba(239, 68, 68, 0.22), transparent 55%),
+              radial-gradient(circle at 60% 80%, rgba(168, 85, 247, 0.2), transparent 55%),
+              linear-gradient(180deg, #050505 0%, #030306 100%);
+  background-attachment: fixed;
+  color: white;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 35% 40%, rgba(59, 130, 246, 0.35), transparent 50%),
+              radial-gradient(circle at 70% 22%, rgba(236, 72, 153, 0.25), transparent 55%),
+              radial-gradient(circle at 55% 60%, rgba(14, 165, 233, 0.25), transparent 55%);
+  filter: blur(140px);
+  opacity: 0.85;
+  transform: translate(0, 0);
+  animation: float-background 22s ease-in-out infinite;
+}
+
+/* Optional faint grid overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
   background-image: 
     linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
   background-size: 40px 40px;
-  min-height: 100vh;
+  opacity: 0.35;
 }
