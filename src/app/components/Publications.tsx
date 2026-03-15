@@ -2,8 +2,9 @@ async function getPapers(authorId: string) {
   // Only stop if the ID is empty or still the default instructional string
   if (!authorId || authorId === "YOUR_AUTHOR_ID_HERE") return [];
 
+  // Request authors so we can display associated co-authors
   const res = await fetch(
-    `https://api.semanticscholar.org/graph/v1/author/${authorId}/papers?fields=title,year,venue,externalIds`,
+    `https://api.semanticscholar.org/graph/v1/author/${authorId}/papers?fields=title,year,venue,externalIds,authors`,
     { next: { revalidate: 86400 } }
   );
   
@@ -33,6 +34,15 @@ export default async function Publications() {
           <h3 className="text-lg font-bold group-hover:text-blue-400 transition-colors">
             {paper.title}
           </h3>
+
+          {paper.authors?.length > 0 && (
+            <p className="text-sm text-zinc-400 mt-1">
+              <span className="font-mono text-zinc-300">By</span>{' '}
+              {paper.authors.slice(0, 3).map((a: any) => a.name).join(', ')}
+              {paper.authors.length > 3 ? ' et al.' : ''}
+            </p>
+          )}
+
           {paper.externalIds?.DOI && (
             <a 
               href={`https://doi.org/${paper.externalIds.DOI}`}
