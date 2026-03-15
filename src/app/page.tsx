@@ -1,5 +1,6 @@
 ﻿import Navbar from './components/Navbar';
 import Publications from './components/Publications';
+import Projects from './components/Projects';
 import AnimatedSection from './components/AnimatedSection';
 
 export default function Home() {
@@ -11,32 +12,49 @@ export default function Home() {
         {/* HERO SECTION */}
         <AnimatedSection className="relative min-h-[75vh] flex items-center" id="home">
           <div className="absolute inset-0 -z-10">
-            {/* Extra glow layers to match the reference style */}
             <div className="absolute -left-20 -top-10 w-80 h-80 bg-gradient-to-br from-blue-500/40 via-purple-500/20 to-transparent blur-[140px]" />
             <div className="absolute -right-16 top-32 w-96 h-96 bg-gradient-to-tr from-pink-500/30 via-indigo-500/10 to-transparent blur-[160px]" />
           </div>
 
-          <div className="w-full">
-            <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight">
-              WELCOME
-            </h1>
-            <p className="mt-6 text-lg md:text-xl text-zinc-300 max-w-2xl leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
+          <div className="w-full grid md:grid-cols-2 gap-12 items-center">
+            {/* Left: Profile Info */}
+            <div>
+              <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-4">
+                Your Name
+              </h1>
+              <p className="text-lg text-blue-400 font-semibold mb-4">
+                Software Engineer | Researcher | Builder
+              </p>
+              <p className="text-lg text-zinc-300 leading-relaxed mb-8">
+                I'm passionate about building elegant solutions to complex problems. With a background in software engineering and research, I combine technical depth with creative problem-solving.
+              </p>
 
-            <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4">
-              <a
-                href="#about"
-                className="inline-flex items-center justify-center rounded-full bg-blue-500/90 px-8 py-3 text-sm font-semibold tracking-wide text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-400/90"
-              >
-                LEARN MORE
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-3 text-sm font-semibold tracking-wide text-white/80 transition hover:text-white hover:border-white"
-              >
-                CONTACT US
-              </a>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-blue-500/90 px-8 py-3 text-sm font-semibold tracking-wide text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-400/90"
+                >
+                  LINKEDIN
+                </a>
+                <a
+                  href="/cv.pdf"
+                  className="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-3 text-sm font-semibold tracking-wide text-white/80 transition hover:text-white hover:border-white hover:bg-white/10"
+                >
+                  DOWNLOAD CV
+                </a>
+              </div>
+            </div>
+
+            {/* Right: Profile Picture Placeholder */}
+            <div className="flex justify-center">
+              <div className="w-64 h-64 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-500/30 flex items-center justify-center overflow-hidden">
+                <div className="text-center">
+                  <p className="text-zinc-400 font-mono text-sm">Your Photo Here</p>
+                  <p className="text-zinc-500 text-xs mt-2">Replace with your profile image</p>
+                </div>
+              </div>
             </div>
           </div>
         </AnimatedSection>
@@ -44,11 +62,24 @@ export default function Home() {
         {/* ABOUT SECTION */}
         <AnimatedSection id="about" className="space-y-6">
           <h2 className="text-xs font-mono text-blue-500 tracking-[0.3em] uppercase underline underline-offset-8">
-            ABOUT US
+            ABOUT ME
           </h2>
-          <p className="text-zinc-300 max-w-3xl leading-relaxed">
-            This portfolio is built to showcase a modern, neon-infused UI style with clean navigation, bold headings, and an immersive background.
-          </p>
+          <div className="space-y-4 text-zinc-300 leading-relaxed">
+            <p>
+              I'm a passionate developer and researcher with expertise in full-stack development, machine learning, and open-source contributions. My journey in tech has been driven by curiosity and a desire to create meaningful impact.
+            </p>
+            <p>
+              When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the community through writing and speaking engagements.
+            </p>
+          </div>
+        </AnimatedSection>
+
+        {/* PROJECTS SECTION */}
+        <AnimatedSection id="projects" className="space-y-6">
+          <h2 className="text-xs font-mono text-blue-500 tracking-[0.3em] uppercase underline underline-offset-8">
+            FEATURED PROJECTS
+          </h2>
+          <Projects />
         </AnimatedSection>
 
         {/* PUBLICATIONS SECTION */}
@@ -62,49 +93,32 @@ export default function Home() {
         {/* CONTACT SECTION */}
         <AnimatedSection id="contact" className="space-y-6">
           <h2 className="text-xs font-mono text-blue-500 tracking-[0.3em] uppercase underline underline-offset-8">
-            CONTACT
+            GET IN TOUCH
           </h2>
           <p className="text-zinc-300 max-w-3xl leading-relaxed">
-            Want to work together or have a question? Reach out via email at <a className="text-blue-400 hover:text-white" href="mailto:hello@company.com">hello@company.com</a>.
+            I'm always interested in hearing about new projects and opportunities. Feel free to reach out for collaboration or just a friendly chat.
           </p>
-        </AnimatedSection>
-
-        {/* FAQ SECTION */}
-        <AnimatedSection id="faq" className="space-y-6">
-          <h2 className="text-xs font-mono text-blue-500 tracking-[0.3em] uppercase underline underline-offset-8">
-            FAQ
-          </h2>
-          <div className="space-y-4 text-zinc-300">
-            <div>
-              <p className="font-semibold">What is this portfolio built with?</p>
-              <p className="text-zinc-400">This is a Next.js app styled using Tailwind CSS with a neon-inspired theme.</p>
-            </div>
-            <div>
-              <p className="font-semibold">How do I customize the background?</p>
-              <p className="text-zinc-400">Edit <code className="rounded bg-white/10 px-1 py-0.5">src/app/globals.css</code> and tweak the gradients + blur layers.</p>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href="ejaebker@purdue.edu"
+              className="inline-flex items-center justify-center rounded-full bg-blue-500/90 px-8 py-3 text-sm font-semibold tracking-wide text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-400/90"
+            >
+              EMAIL ME
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-3 text-sm font-semibold tracking-wide text-white/80 transition hover:text-white hover:border-white hover:bg-white/10"
+            >
+              CONNECT ON LINKEDIN
+            </a>
           </div>
-        </AnimatedSection>
-
-        {/* SIGN IN SECTION */}
-        <AnimatedSection id="signin" className="space-y-6">
-          <h2 className="text-xs font-mono text-blue-500 tracking-[0.3em] uppercase underline underline-offset-8">
-            SIGN IN
-          </h2>
-          <p className="text-zinc-300 max-w-2xl leading-relaxed">
-            This is a placeholder sign-in section. Integrate your auth provider (e.g. NextAuth) here to enable secure access.
-          </p>
-          <a
-            href="#"
-            className="inline-flex items-center justify-center rounded-full bg-white/10 px-8 py-3 text-sm font-semibold tracking-wide text-white shadow-lg shadow-blue-500/20 transition hover:bg-white/15"
-          >
-            SIGN IN
-          </a>
         </AnimatedSection>
 
         {/* FOOTER */}
         <footer className="border-t border-white/10 pt-10 text-sm text-zinc-500">
-          <p>© {new Date().getFullYear()} COMPANY. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Your Name. All rights reserved.</p>
         </footer>
       </main>
     </div>
