@@ -2,169 +2,100 @@
 
 @theme {
   --color-brand-blue: #3b82f6;
-  --color-dark-bg: #050505;
-  
-  /* Add zinc colors */
+  --color-dark-bg: #030303;
   --color-zinc-400: #a1a1aa;
   --color-zinc-500: #71717a;
   --color-zinc-700: #3f3f46;
   --color-zinc-800: #27272a;
   --color-zinc-900: #18181b;
-  
-  /* Add blue variants */
-  --color-blue-400: #60a5fa;
-  --color-blue-500: #3b82f6;
-  --color-blue-600: #2563eb;
-  --color-blue-700: #1d4ed8;
 }
 
 :root {
-  background-color: var(--color-dark-bg);
+  background-color: #030303; /* Root level background */
   color: white;
 }
 
-@keyframes float-background {
-  0%, 100% {
-    transform: translate(-5%, -5%) scale(1);
-  }
-  50% {
-    transform: translate(5%, 5%) scale(1.02);
-  }
+@keyframes mesh-float {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate(2%, -2%) scale(1.1) rotate(1deg); }
+  66% { transform: translate(-2%, 2%) scale(0.9) rotate(-1deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-1%, -1%); }
+  20% { transform: translate(1%, 1%); }
+  30% { transform: translate(-2%, -2%); }
+  40% { transform: translate(2%, 2%); }
+  50% { transform: translate(-1%, 1%); }
+  60% { transform: translate(1%, -1%); }
+  70% { transform: translate(-2%, 1%); }
+  80% { transform: translate(2%, -1%); }
+  90% { transform: translate(-1%, 2%); }
 }
 
 body {
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
-  background: radial-gradient(circle at 15% 25%, rgba(59, 130, 246, 0.28), transparent 52%),
-              radial-gradient(circle at 75% 15%, rgba(239, 68, 68, 0.22), transparent 55%),
-              radial-gradient(circle at 60% 80%, rgba(168, 85, 247, 0.2), transparent 55%),
-              linear-gradient(180deg, #050505 0%, #030306 100%);
-  background-attachment: fixed;
-  color: white;
+  background-color: transparent; /* Transparent to show pseudo-elements */
+  color: #fafafa;
 }
 
+/* More Vibrant Liquid Mesh Background */
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
+  inset: -50%;
+  z-index: -10;
   pointer-events: none;
-  background: radial-gradient(circle at 35% 40%, rgba(59, 130, 246, 0.35), transparent 50%),
-              radial-gradient(circle at 70% 22%, rgba(236, 72, 153, 0.25), transparent 55%),
-              radial-gradient(circle at 55% 60%, rgba(14, 165, 233, 0.25), transparent 55%);
-  filter: blur(140px);
-  opacity: 0.85;
-  transform: translate(0, 0);
-  animation: float-background 22s ease-in-out infinite;
+  background: 
+    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(139, 92, 246, 0.25) 0%, transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 10% 85%, rgba(14, 165, 233, 0.25) 0%, transparent 40%);
+  filter: blur(100px);
+  animation: mesh-float 25s ease-in-out infinite;
 }
 
-/* Optional faint grid overlay */
 body::after {
   content: "";
   position: fixed;
+  inset: -50%;
+  z-index: -10;
+  pointer-events: none;
+  background: 
+    radial-gradient(circle at 80% 85%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 20% 75%, rgba(239, 68, 68, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 65% 35%, rgba(14, 165, 233, 0.2) 0%, transparent 45%);
+  filter: blur(120px);
+  animation: mesh-float 35s ease-in-out infinite reverse;
+}
+
+/* Architectural Guide Lines */
+.bg-grid-lines {
+  position: fixed;
   inset: 0;
+  z-index: -5;
   pointer-events: none;
   background-image: 
-    linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.35;
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(circle at center, black 20%, transparent 80%);
 }
 
-/* Light mode styles */
-html.light {
-  color-scheme: light;
-}
-
-html.light :root {
-  background-color: #f8f9fa;
-  color: #1f2937;
-}
-
-html.light body {
-  background: radial-gradient(circle at 15% 25%, rgba(59, 130, 246, 0.1), transparent 52%),
-              radial-gradient(circle at 75% 15%, rgba(239, 68, 68, 0.08), transparent 55%),
-              radial-gradient(circle at 60% 80%, rgba(168, 85, 247, 0.08), transparent 55%),
-              linear-gradient(180deg, #f8f9fa 0%, #f3f4f6 100%);
-  color: #1f2937;
-}
-
-html.light body::before {
-  background: radial-gradient(circle at 35% 40%, rgba(59, 130, 246, 0.15), transparent 50%),
-              radial-gradient(circle at 70% 22%, rgba(236, 72, 153, 0.1), transparent 55%),
-              radial-gradient(circle at 55% 60%, rgba(14, 165, 233, 0.1), transparent 55%);
-  opacity: 0.6;
-}
-
-html.light body::after {
-  background-image: 
-    linear-gradient(to right, rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
-  opacity: 0.2;
-}
-
-/* Text color adjustments for light mode */
-html.light h1,
-html.light h2,
-html.light h3,
-html.light h4,
-html.light h5,
-html.light h6 {
-  color: #0f172a;
-}
-
-html.light p {
-  color: #374151;
-}
-
-html.light .text-zinc-300 {
-  color: #6b7280;
-}
-
-html.light .text-zinc-400 {
-  color: #9ca3af;
-}
-
-html.light .text-zinc-500 {
-  color: #d1d5db;
-}
-
-html.light .bg-zinc-400 {
-  background-color: #d1d5db;
-}
-
-html.light .border-blue-500\/30 {
-  border-color: rgba(59, 130, 246, 0.2);
-}
-
-html.light .bg-blue-500\/90 {
-  background-color: rgba(59, 130, 246, 0.95);
-}
-
-html.light .bg-blue-400\/90 {
-  background-color: rgba(96, 165, 250, 0.95);
-}
-
-html.light .text-blue-400 {
-  color: #2563eb;
-}
-
-html.light .text-blue-500 {
-  color: #1d4ed8;
-}
-
-html.light .shadow-blue-500\/20 {
-  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.1);
-}
-
-html.light .bg-white\/10 {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-html.light .border-white\/20 {
-  border-color: rgba(0, 0, 0, 0.2);
-}
-
-html.light .text-white\/80 {
-  color: rgba(0, 0, 0, 0.8);
+.noise {
+  position: fixed;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  filter: contrast(150%) brightness(100%);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.05;
+  animation: grain 8s steps(10) infinite;
 }
