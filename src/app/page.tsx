@@ -12,21 +12,21 @@ export default function Home() {
         {/* HERO SECTION */}
         <AnimatedSection className="relative min-h-[75vh] flex items-center" id="home">
           <div className="absolute inset-0 -z-10">
-            <div className="absolute -left-20 -top-10 w-80 h-80 bg-gradient-to-br from-blue-500/40 via-purple-500/20 to-transparent blur-[140px]" />
-            <div className="absolute -right-16 top-32 w-96 h-96 bg-gradient-to-tr from-pink-500/30 via-indigo-500/10 to-transparent blur-[160px]" />
+            <div className="absolute -left-20 -top-10 w-80 h-80 bg-linear-to-br from-blue-500/40 via-purple-500/20 to-transparent blur-[140px]" />
+            <div className="absolute -right-16 top-32 w-96 h-96 bg-linear-to-tr from-pink-500/30 via-indigo-500/10 to-transparent blur-[160px]" />
           </div>
 
           <div className="w-full grid md:grid-cols-2 gap-12 items-center">
             {/* Left: Profile Info */}
             <div>
               <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-4">
-                Your Name
+                Eric Jaebker
               </h1>
               <p className="text-lg text-blue-400 font-semibold mb-4">
-                Software Engineer | Researcher | Builder
+                Electrical Engineer | Researcher | Builder
               </p>
               <p className="text-lg text-zinc-300 leading-relaxed mb-8">
-                I'm passionate about building elegant solutions to complex problems. With a background in software engineering and research, I combine technical depth with creative problem-solving.
+                I&apos;m passionate about building elegant solutions to complex problems. With a background in software engineering and research, I combine technical depth with creative problem-solving.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -49,7 +49,7 @@ export default function Home() {
 
             {/* Right: Profile Picture Placeholder */}
             <div className="flex justify-center">
-              <div className="w-64 h-64 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-500/30 flex items-center justify-center overflow-hidden">
+              <div className="w-64 h-64 rounded-2xl bg-linear-to-br from-blue-500/20 to-purple-500/20 border border-blue-500/30 flex items-center justify-center overflow-hidden">
                 <div className="text-center">
                   <p className="text-zinc-400 font-mono text-sm">Your Photo Here</p>
                   <p className="text-zinc-500 text-xs mt-2">Replace with your profile image</p>
@@ -66,10 +66,10 @@ export default function Home() {
           </h2>
           <div className="space-y-4 text-zinc-300 leading-relaxed">
             <p>
-              I'm a passionate developer and researcher with expertise in full-stack development, machine learning, and open-source contributions. My journey in tech has been driven by curiosity and a desire to create meaningful impact.
+              I&apos;m a passionate developer and researcher with expertise in full-stack development, machine learning, and open-source contributions. My journey in tech has been driven by curiosity and a desire to create meaningful impact.
             </p>
             <p>
-              When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the community through writing and speaking engagements.
+              When I&apos;m not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the community through writing and speaking engagements.
             </p>
           </div>
         </AnimatedSection>
@@ -96,7 +96,7 @@ export default function Home() {
             GET IN TOUCH
           </h2>
           <p className="text-zinc-300 max-w-3xl leading-relaxed">
-            I'm always interested in hearing about new projects and opportunities. Feel free to reach out for collaboration or just a friendly chat.
+            I&apos;m always interested in hearing about new projects and opportunities. Feel free to reach out for collaboration or just a friendly chat.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
@@ -118,7 +118,7 @@ export default function Home() {
 
         {/* FOOTER */}
         <footer className="border-t border-white/10 pt-10 text-sm text-zinc-500">
-          <p>© {new Date().getFullYear()} Your Name. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Eric Jaebker. All rights reserved.</p>
         </footer>
       </main>
     </div>

@@ -1,7 +1,20 @@
 import Link from 'next/link';
 import Navbar from '@/app/components/Navbar';
 
-const projects: { [key: string]: any } = {
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  technologies: string[];
+  link: string;
+  year: number;
+  fullDescription: string;
+  challenges: string;
+  outcome: string;
+}
+
+const projects: Record<string, Project> = {
   '1': {
     id: 1,
     title: "Project One",
@@ -67,8 +80,9 @@ const projects: { [key: string]: any } = {
   },
 };
 
-export default function ProjectDetail({ params }: { params: { id: string } }) {
-  const project = projects[params.id];
+export default async function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const project = projects[id];
 
   if (!project) {
     return (
@@ -76,7 +90,7 @@ export default function ProjectDetail({ params }: { params: { id: string } }) {
         <Navbar />
         <main className="max-w-5xl mx-auto px-6 pt-32 text-center">
           <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
-          <p className="text-zinc-400 mb-8">The project you're looking for doesn't exist.</p>
+          <p className="text-zinc-400 mb-8">The project you&apos;re looking for doesn&apos;t exist.</p>
           <Link href="#projects" className="text-blue-400 hover:text-blue-300">
             ← Back to Projects
           </Link>
