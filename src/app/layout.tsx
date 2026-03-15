@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+// Make sure this path matches where you created the file!
+import ParticleBackground from "./components/ParticleBackground"; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +27,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
       >
-        {children}
+        {/* 1. The particles sit at the very bottom */}
+        <ParticleBackground /> 
+
+        {/* 2. Your content sits on top */}
+        <div className="relative z-10">
+          {children}
+        </div>
       </body>
     </html>
   );
