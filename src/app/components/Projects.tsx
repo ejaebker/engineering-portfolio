@@ -93,28 +93,32 @@ export default function Projects() {
               <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 {/* Image Section - Left */}
                 <div className="relative group perspective-1000">
-                  <div className="absolute -inset-4 bg-blue-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-1000" />
+                  <div className="absolute -inset-4 bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-1000" />
                   <div className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] border border-white/10 shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]">
                     <img
                       src={currentProject.image}
                       alt={currentProject.title}
                       className="w-full h-64 md:h-80 object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-1000"
+                      onError={(e) => {
+                        e.currentTarget.src = "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80"; // Abstract technical fallback
+                        e.currentTarget.className = "w-full h-64 md:h-80 object-cover opacity-20 grayscale";
+                      }}
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-60" />
                   </div>
                   {/* Architectural Corner Accent */}
-                  <div className="absolute -top-2 -left-2 w-6 h-6 md:w-8 md:h-8 border-t-2 border-l-2 border-blue-500/30 rounded-tl-lg md:rounded-tl-xl pointer-events-none" />
+                  <div className="absolute -top-2 -left-2 w-6 h-6 md:w-8 md:h-8 border-t-2 border-l-2 border-white/20 rounded-tl-lg md:rounded-tl-xl pointer-events-none" />
                 </div>
 
                 {/* Content Section - Right */}
                 <div className="flex flex-col gap-6 md:gap-8">
                   <div>
                     <div className="flex items-center gap-4 mb-4 md:mb-6">
-                      <span className="text-[9px] md:text-[10px] text-blue-400 font-black tracking-[0.4em] uppercase">
+                      <span className="text-[9px] md:text-[10px] text-white/40 font-black tracking-[0.4em] uppercase">
                         EST. {currentProject.year}
                       </span>
                       <div className="h-px w-6 md:w-8 bg-white/10" />
-                      <span className="text-[9px] md:text-[10px] text-white/30 font-mono tracking-widest">
+                      <span className="text-[9px] md:text-[10px] text-white/20 font-mono tracking-widest">
                         PHASE_0{currentIndex + 1}
                       </span>
                     </div>
@@ -131,7 +135,7 @@ export default function Projects() {
                     {currentProject.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="text-[8px] md:text-[9px] font-black tracking-[0.2em] bg-white/[0.03] text-white/60 px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-white/[0.05] hover:border-blue-500/30 hover:text-blue-400 transition-all duration-500 uppercase"
+                        className="text-[8px] md:text-[9px] font-black tracking-[0.2em] bg-white/[0.03] text-white/60 px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-white/[0.05] hover:border-white/20 hover:text-white transition-all duration-500 uppercase"
                       >
                         {tech}
                       </span>
@@ -180,7 +184,7 @@ export default function Projects() {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`h-1 transition-all duration-700 rounded-full ${
-                index === currentIndex ? 'w-12 bg-blue-500' : 'w-4 bg-white/10'
+                index === currentIndex ? 'w-12 bg-white/40' : 'w-4 bg-white/10'
               }`}
             />
           ))}

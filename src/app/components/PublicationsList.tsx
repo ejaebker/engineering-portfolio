@@ -52,7 +52,7 @@ export default function PublicationsList({ papers }: { papers: Paper[] }) {
         <motion.div 
           key={paper.paperId} 
           variants={item}
-          className="group relative bg-white/[0.01] border border-white/[0.05] rounded-3xl p-8 transition-all duration-500 hover:bg-white/[0.03] hover:border-blue-500/30 overflow-hidden"
+          className="group relative bg-white/[0.01] border border-white/[0.05] rounded-3xl p-8 transition-all duration-500 hover:bg-white/[0.03] hover:border-white/20 overflow-hidden"
         >
           {/* Background Technical Accent */}
           <div className="absolute top-0 right-0 p-6 text-[40px] font-black text-white/[0.02] pointer-events-none select-none">
@@ -61,13 +61,13 @@ export default function PublicationsList({ papers }: { papers: Paper[] }) {
           
           <div className="relative z-10">
             <div className="flex items-center gap-4 mb-4">
-              <span className="text-[10px] text-blue-500 font-black tracking-[0.3em] uppercase">
+              <span className="text-[10px] text-white/40 font-black tracking-[0.3em] uppercase">
                 {paper.year ?? 'N/A'} // {paper.venue || "UNPUBLISHED"}
               </span>
-              <div className="h-px w-8 bg-blue-500/20" />
+              <div className="h-px w-8 bg-white/10" />
             </div>
             
-            <h3 className="text-xl md:text-2xl font-bold group-hover:text-blue-400 transition-colors duration-500 leading-tight mb-4 max-w-2xl">
+            <h3 className="text-xl md:text-2xl font-bold group-hover:text-white transition-colors duration-500 leading-tight mb-4 max-w-2xl uppercase">
               {paper.title}
             </h3>
             
@@ -82,7 +82,7 @@ export default function PublicationsList({ papers }: { papers: Paper[] }) {
               {paper.externalIds?.DOI ? (
                 <a 
                   href={`https://doi.org/${paper.externalIds.DOI}`}
-                  className="text-[10px] text-white/40 hover:text-white font-black uppercase tracking-widest transition-all flex items-center gap-2"
+                  className="text-[10px] text-white/30 hover:text-white font-black uppercase tracking-widest transition-all flex items-center gap-2"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -92,7 +92,7 @@ export default function PublicationsList({ papers }: { papers: Paper[] }) {
                   </svg>
                 </a>
               ) : (
-                <span className="text-[10px] text-white/20 font-black uppercase tracking-widest">
+                <span className="text-[10px] text-white/10 font-black uppercase tracking-widest">
                   DOCUMENT_PENDING
                 </span>
               )}

@@ -19,13 +19,13 @@ export default function AnimatedSection({
   return (
     <motion.section
       id={id}
-      initial={{ opacity: 1, y: 0, scale: 1 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
       transition={{
-        duration: 1.2,
+        duration: 1,
         delay: delay,
-        ease: "easeOut"
+        ease: [0.16, 1, 0.3, 1]
       }}
       className={className}
     >

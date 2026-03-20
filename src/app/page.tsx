@@ -29,12 +29,12 @@ export default function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, ease: "easeOut" }}
               >
-                <h1 className="text-[clamp(3.5rem,15vw,8rem)] font-black tracking-tighter mb-6 md:mb-8 leading-[0.85] bg-clip-text text-transparent bg-linear-to-b from-white via-white to-white/10 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                <h1 className="text-[clamp(3.5rem,15vw,8rem)] font-black tracking-tighter mb-6 md:mb-8 leading-[0.85] bg-clip-text text-transparent bg-linear-to-b from-white via-white to-white/10 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] uppercase">
                   ERIC<br />JAEBKER
                 </h1>
                 <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 mb-8">
-                  <div className="hidden md:block h-px w-12 bg-blue-500/50 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
-                  <p className="text-[10px] md:text-sm font-bold tracking-[0.3em] md:tracking-[0.5em] text-blue-400 uppercase drop-shadow-[0_0_8px_rgba(59,130,246,0.3)]">
+                  <div className="hidden md:block h-px w-12 bg-white/20" />
+                  <p className="text-[10px] md:text-sm font-bold tracking-[0.3em] md:tracking-[0.5em] text-white/40 uppercase">
                     Electrical Engineer & Researcher
                   </p>
                 </div>
@@ -49,9 +49,9 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="relative group py-2"
                   >
-                    <span className="text-[10px] md:text-[11px] font-black tracking-[0.3em] text-white uppercase">LINKEDIN</span>
-                    <div className="absolute bottom-0 left-0 w-full h-px bg-white/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
-                    <div className="absolute -bottom-1 left-0 w-full h-px bg-blue-500 scale-x-0 group-hover:scale-x-50 transition-transform duration-700 delay-100 origin-left" />
+                    <span className="text-[10px] md:text-[11px] font-black tracking-[0.3em] text-white/60 group-hover:text-white uppercase">LINKEDIN</span>
+                    <div className="absolute bottom-0 left-0 w-full h-px bg-white/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+                    <div className="absolute -bottom-1 left-0 w-full h-px bg-white/40 scale-x-0 group-hover:scale-x-50 transition-transform duration-700 delay-100 origin-left" />
                   </a>
                   
                   <a
@@ -81,7 +81,7 @@ export default function Home() {
                   
                   {/* Technical Overlay - Reveals on Hover */}
                   <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-1000 z-10">
-                    <div className="absolute top-8 left-8 md:top-10 md:left-10 text-[7px] md:text-[8px] font-mono text-blue-400 tracking-[0.3em] leading-relaxed">
+                    <div className="absolute top-8 left-8 md:top-10 md:left-10 text-[7px] md:text-[8px] font-mono text-white/40 tracking-[0.3em] leading-relaxed">
                       SYSTEM_INIT // 0xAF42<br />
                       CORE_TEMP // 34.2C<br />
                       STATUS // OPTIMAL
@@ -116,7 +116,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-[1fr_2fr] gap-10 md:gap-12 items-start relative z-10">
             <div className="md:sticky md:top-32 space-y-4">
-              <h2 className="text-[10px] font-black text-blue-500 tracking-[0.5em] uppercase">
+              <h2 className="text-[10px] font-black text-white/40 tracking-[0.5em] uppercase">
                 / ABOUT_CORE
               </h2>
               <div className="text-[9px] font-mono text-white/20 tracking-widest leading-relaxed">
@@ -158,7 +158,7 @@ export default function Home() {
         {/* PROJECTS SECTION */}
         <AnimatedSection id="projects" className="space-y-12">
           <div className="flex items-center gap-8 mb-4">
-            <h2 className="text-[10px] font-bold text-blue-500 tracking-[0.5em] uppercase">
+            <h2 className="text-[10px] font-black text-white/40 tracking-[0.5em] uppercase">
               / FEATURED WORK
             </h2>
             <div className="h-px flex-1 bg-white/5" />
@@ -169,7 +169,7 @@ export default function Home() {
         {/* PUBLICATIONS SECTION */}
         <AnimatedSection id="publications" className="space-y-12">
            <div className="grid md:grid-cols-[1fr_2fr] gap-12 items-start">
-            <h2 className="text-[10px] font-bold text-blue-500 tracking-[0.5em] uppercase sticky top-32">
+            <h2 className="text-[10px] font-black text-white/40 tracking-[0.5em] uppercase sticky top-32">
               / RESEARCH
             </h2>
             <Publications />

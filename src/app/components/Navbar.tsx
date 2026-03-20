@@ -15,10 +15,10 @@ export default function Navbar() {
         {/* Brand/Logo - Geometric & Minimal */}
         <div className="flex items-center gap-4 group">
           <div className="relative w-12 h-12 flex items-center justify-center">
-            <div className="absolute inset-0 border border-white/10 rounded-xl transition-all duration-700 group-hover:rotate-[45deg] group-hover:border-blue-500/50 group-hover:bg-blue-500/5" />
-            <div className="w-1.5 h-1.5 bg-white rounded-full transition-all duration-700 group-hover:bg-blue-400 group-hover:scale-150 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+            <div className="absolute inset-0 border border-white/10 rounded-xl transition-all duration-700 group-hover:rotate-[45deg] group-hover:border-white/40 group-hover:bg-white/[0.02]" />
+            <div className="w-1.5 h-1.5 bg-white rounded-full transition-all duration-700 group-hover:scale-150 shadow-[0_0_8px_rgba(255,255,255,0.3)]" />
           </div>
-          <a href="#home" className="text-[10px] font-bold tracking-[0.4em] text-white/50 hover:text-white transition-colors duration-500 uppercase">
+          <a href="#home" className="text-[10px] font-black tracking-[0.4em] text-white/30 hover:text-white transition-colors duration-500 uppercase">
             EJ.SYSTEMS
           </a>
         </div>
@@ -32,7 +32,7 @@ export default function Navbar() {
             <NavLink href="#publications" label="RESEARCH" />
           </div>
           
-          {/* Mobile Nav Icons (Visible only on very small screens) */}
+          {/* Mobile Nav Icons */}
           <div className="flex sm:hidden items-center gap-1 px-2">
             <NavLink href="#home" label="" icon={<HomeIcon />} />
             <NavLink href="#projects" label="" icon={<ProjectIcon />} />
@@ -44,7 +44,7 @@ export default function Navbar() {
             href="https://linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 text-white/40 hover:text-blue-400 hover:bg-white/5 rounded-xl transition-all duration-300"
+            className="p-3 text-white/30 hover:text-white hover:bg-white/[0.03] rounded-xl transition-all duration-300"
             aria-label="LinkedIn"
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
