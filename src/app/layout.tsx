@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: "Neon-themed engineering portfolio with projects and publications.",
 };
 
+import CustomCursor from './components/CustomCursor';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,6 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <CustomCursor />
         <div className="bg-grid-lines" />
         <div className="noise" />
         <Providers>{children}</Providers>

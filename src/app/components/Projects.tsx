@@ -11,28 +11,28 @@ export default function Projects() {
   const projects = [
     {
       id: 1,
-      title: "Project One",
-      description: "A brief description of your first project. Highlight the technologies used and key achievements.",
-      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop",
-      technologies: ["React", "TypeScript", "Tailwind CSS"],
+      title: "Edge Compute Optimization",
+      description: "Low-latency machine learning inference on resource-constrained embedded hardware. Focused on reducing power consumption while maintaining high accuracy.",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=800&fit=crop",
+      technologies: ["C++", "TensorFlow Lite", "ARM Cortex"],
       link: "https://github.com",
       year: 2024,
     },
     {
       id: 2,
-      title: "Project Two",
-      description: "Description of your second project. Explain the problem you solved and the impact it had.",
-      image: "https://images.unsplash.com/photo-1633356122544-f134ef2944f5?w=600&h=400&fit=crop",
-      technologies: ["Next.js", "Node.js", "MongoDB"],
+      title: "Autonomous Signal Processing",
+      description: "Real-time noise cancellation and signal enhancement for industrial sensor networks using adaptive filtering techniques.",
+      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&h=800&fit=crop",
+      technologies: ["Python", "FPGA", "Signal Processing"],
       link: "https://github.com",
       year: 2024,
     },
     {
       id: 3,
-      title: "Project Three",
-      description: "Your third project description. Include metrics or outcomes that demonstrate your work.",
-      image: "https://images.unsplash.com/photo-1526374965328-7f5ae4e8a83f?w=600&h=400&fit=crop",
-      technologies: ["Python", "Machine Learning", "Data Analysis"],
+      title: "Neural Network Architecture",
+      description: "Research into sparse neural networks and weight pruning to optimize deep learning models for mobile and edge deployment.",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=800&fit=crop",
+      technologies: ["PyTorch", "Python", "CUDA"],
       link: "https://github.com",
       year: 2023,
     },
@@ -116,10 +116,6 @@ export default function Projects() {
                     <div className="flex items-center gap-4 mb-4 md:mb-6">
                       <span className="text-[9px] md:text-[10px] text-white/40 font-black tracking-[0.4em] uppercase">
                         EST. {currentProject.year}
-                      </span>
-                      <div className="h-px w-6 md:w-8 bg-white/10" />
-                      <span className="text-[9px] md:text-[10px] text-white/20 font-mono tracking-widest">
-                        PHASE_0{currentIndex + 1}
                       </span>
                     </div>
                     <h3 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-none mb-4 md:mb-6 uppercase">

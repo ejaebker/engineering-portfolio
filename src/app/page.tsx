@@ -29,37 +29,36 @@ export default function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, ease: "easeOut" }}
               >
-                <h1 className="text-[clamp(3.5rem,15vw,8rem)] font-black tracking-tighter mb-6 md:mb-8 leading-[0.85] bg-clip-text text-transparent bg-linear-to-b from-white via-white to-white/10 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] uppercase">
+                <h1 className="text-[clamp(3.5rem,15vw,9rem)] font-black tracking-tighter mb-8 md:mb-12 leading-[0.8] text-white drop-shadow-sm uppercase">
                   ERIC<br />JAEBKER
                 </h1>
-                <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 mb-8">
-                  <div className="hidden md:block h-px w-12 bg-white/20" />
-                  <p className="text-[10px] md:text-sm font-bold tracking-[0.3em] md:tracking-[0.5em] text-white/40 uppercase">
+                <div className="flex flex-col md:flex-row items-center gap-6 mb-12">
+                  <div className="hidden md:block h-px w-16 bg-white/20" />
+                  <p className="text-[10px] md:text-xs font-black tracking-[0.6em] text-white/40 uppercase">
                     Electrical Engineer & Researcher
                   </p>
                 </div>
-                <p className="text-lg md:text-xl text-zinc-400 leading-relaxed mb-10 md:mb-12 max-w-xl font-light mx-auto md:mx-0">
+                <p className="text-xl md:text-2xl text-zinc-400 leading-relaxed mb-12 md:mb-16 max-w-xl font-light mx-auto md:mx-0">
                   Architecting intelligent systems through a blend of rigorous research and high-performance software engineering.
                 </p>
 
-                <div className="flex flex-wrap justify-center md:justify-start gap-6 md:gap-8 items-center">
+                <div className="flex flex-wrap justify-center md:justify-start gap-8 md:gap-12 items-center">
                   <a
                     href="https://linkedin.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="relative group py-2"
                   >
-                    <span className="text-[10px] md:text-[11px] font-black tracking-[0.3em] text-white/60 group-hover:text-white uppercase">LINKEDIN</span>
-                    <div className="absolute bottom-0 left-0 w-full h-px bg-white/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
-                    <div className="absolute -bottom-1 left-0 w-full h-px bg-white/40 scale-x-0 group-hover:scale-x-50 transition-transform duration-700 delay-100 origin-left" />
+                    <span className="text-[10px] md:text-[11px] font-black tracking-[0.4em] text-white/60 group-hover:text-white transition-colors duration-500 uppercase">LINKEDIN</span>
+                    <div className="absolute bottom-0 left-0 w-full h-px bg-white/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
                   </a>
                   
                   <a
                     href="/WINTER 2026 resume.pdf"
-                    className="group relative flex items-center gap-4 px-6 md:px-8 py-3.5 md:py-4 rounded-full bg-white/[0.03] border border-white/5 hover:bg-white hover:text-black transition-all duration-700"
+                    className="group relative flex items-center gap-6 px-8 md:px-10 py-4 md:py-5 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-700"
                   >
-                    <span className="text-[10px] md:text-[11px] font-black tracking-[0.3em] uppercase">GET RESUME</span>
-                    <svg className="w-3.5 h-3.5 md:w-4 md:h-4 transition-transform duration-700 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <span className="text-[10px] md:text-[11px] font-black tracking-[0.4em] uppercase">GET RESUME</span>
+                    <svg className="w-4 h-4 transition-transform duration-700 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                   </a>
@@ -68,66 +67,44 @@ export default function Home() {
             </div>
 
             {/* Right: Profile Picture */}
-            <div className="relative flex justify-center md:justify-end overflow-visible mt-8 md:mt-0">
-              <PerspectiveCard className="relative w-64 h-[400px] md:w-full md:h-[600px]">
-                <div className="relative w-full h-full overflow-hidden rounded-[3rem] md:rounded-[4rem] border border-white/5 bg-zinc-900 group shadow-2xl">
+            <div className="relative flex justify-center md:justify-end overflow-visible mt-12 md:mt-0">
+              <PerspectiveCard className="relative w-64 h-[450px] md:w-full md:h-[650px]">
+                <div className="relative w-full h-full overflow-hidden rounded-[4rem] border border-white/5 bg-zinc-950 group shadow-2xl">
                   <Image
                     src="/IMG_0741.jpg"
                     alt="Eric Jaebker"
                     fill
-                    className="object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105 transition-all duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    className="object-cover grayscale group-hover:scale-105 transition-all duration-[2.5s] ease-[cubic-bezier(0.16,1,0.3,1)]"
                     priority
                   />
                   
-                  {/* Technical Overlay - Reveals on Hover */}
-                  <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-1000 z-10">
-                    <div className="absolute top-8 left-8 md:top-10 md:left-10 text-[7px] md:text-[8px] font-mono text-white/40 tracking-[0.3em] leading-relaxed">
-                      SYSTEM_INIT // 0xAF42<br />
-                      CORE_TEMP // 34.2C<br />
-                      STATUS // OPTIMAL
-                    </div>
-                    {/* Architectural Grid Overlay */}
-                    <div className="absolute inset-0 border-[0.5px] border-white/5 grid grid-cols-6 grid-rows-10" />
-                  </div>
-
-                  <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent opacity-60 pointer-events-none z-20" />
-                  <div className="absolute bottom-8 left-8 right-8 md:bottom-10 md:left-10 md:right-10 flex justify-between items-end pointer-events-none z-30">
-                    <div className="text-[8px] md:text-[10px] font-mono text-white/40 tracking-widest leading-relaxed">
-                      PURDUE UNIVERSITY<br />
-                      ELECTRICAL ENGINEERING
-                    </div>
-                  </div>
+                  <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent opacity-40 pointer-events-none z-20" />
                 </div>
               </PerspectiveCard>
               
-              {/* Abstract Floating Shapes */}
-              <div className="absolute -top-10 -right-10 md:-top-20 md:-right-20 w-48 h-48 md:w-64 md:h-64 bg-blue-500/5 blur-[80px] md:blur-[120px] rounded-full animate-pulse pointer-events-none" />
-              <div className="absolute -bottom-10 -left-10 md:-bottom-20 md:-left-20 w-56 h-56 md:w-80 md:h-80 bg-purple-500/5 blur-[100px] md:blur-[140px] rounded-full animate-pulse delay-1000 pointer-events-none" />
+              {/* Subtle Monochrome Glows */}
+              <div className="absolute -top-10 -right-10 md:-top-20 md:-right-20 w-48 h-48 md:w-64 md:h-64 bg-white/5 blur-[80px] md:blur-[120px] rounded-full pointer-events-none" />
+              <div className="absolute -bottom-10 -left-10 md:-bottom-20 md:-left-20 w-56 h-56 md:w-80 md:h-80 bg-white/[0.03] blur-[100px] md:blur-[140px] rounded-full pointer-events-none" />
             </div>
           </div>
         </AnimatedSection>
 
         {/* ABOUT SECTION */}
         <AnimatedSection id="about" className="space-y-12 relative overflow-hidden md:overflow-visible">
-          {/* Background Decorative Element - Hidden on very small screens */}
-          <div className="hidden lg:block absolute -left-24 top-0 text-[120px] font-black text-white/[0.02] pointer-events-none select-none -rotate-90 origin-top-left">
-            SYSTEM_ORIGIN
-          </div>
-
-          <div className="grid md:grid-cols-[1fr_2fr] gap-10 md:gap-12 items-start relative z-10">
-            <div className="md:sticky md:top-32 space-y-4">
+          <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-16 items-start relative z-10">
+            <div className="md:sticky md:top-32 space-y-6">
               <h2 className="text-[10px] font-black text-white/40 tracking-[0.5em] uppercase">
-                / ABOUT_CORE
+                / PHILOSOPHY
               </h2>
-              <div className="text-[9px] font-mono text-white/20 tracking-widest leading-relaxed">
-                LOC // 40.4237° N, 86.9212° W<br />
-                BUILD // v2.0.26<br />
-                STATUS // ACTIVE_RESEARCH
+              <div className="text-[10px] font-medium text-white/20 tracking-[0.2em] leading-relaxed uppercase">
+                Bridging theory<br />
+                and implementation<br />
+                at scale.
               </div>
             </div>
             
-            <div className="space-y-10 md:space-y-12">
-              <div className="space-y-6 md:space-y-8 text-lg md:text-2xl text-zinc-400 font-light leading-relaxed">
+            <div className="space-y-12 md:space-y-16">
+              <div className="space-y-8 md:space-y-10 text-xl md:text-3xl text-zinc-400 font-light leading-tight">
                 <p>
                   I am an Electrical Engineer and Researcher dedicated to bridging the gap between theoretical models and real-world deployment. My work specializes in the intersection of hardware optimization and intelligent system design.
                 </p>
@@ -137,18 +114,18 @@ export default function Home() {
               </div>
 
               {/* Technical Stats / Skills Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pt-10 md:pt-12 border-t border-white/[0.05]">
-                <div className="space-y-2 p-4 rounded-2xl bg-white/[0.01] border border-white/[0.03]">
-                  <div className="text-[9px] font-black text-white/20 tracking-widest uppercase">Expertise_01</div>
-                  <div className="text-sm font-bold text-white tracking-tight">Embedded Systems</div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 pt-12 md:pt-16 border-t border-white/[0.05]">
+                <div className="space-y-3">
+                  <div className="text-[9px] font-black text-white/20 tracking-[0.4em] uppercase">FOCUS_01</div>
+                  <div className="text-base font-bold text-white tracking-tight uppercase">Embedded Systems</div>
                 </div>
-                <div className="space-y-2 p-4 rounded-2xl bg-white/[0.01] border border-white/[0.03]">
-                  <div className="text-[9px] font-black text-white/20 tracking-widest uppercase">Expertise_02</div>
-                  <div className="text-sm font-bold text-white tracking-tight">Machine Learning</div>
+                <div className="space-y-3">
+                  <div className="text-[9px] font-black text-white/20 tracking-[0.4em] uppercase">FOCUS_02</div>
+                  <div className="text-base font-bold text-white tracking-tight uppercase">Machine Learning</div>
                 </div>
-                <div className="space-y-2 p-4 rounded-2xl bg-white/[0.01] border border-white/[0.03]">
-                  <div className="text-[9px] font-black text-white/20 tracking-widest uppercase">Expertise_03</div>
-                  <div className="text-sm font-bold text-white tracking-tight">Signal Processing</div>
+                <div className="space-y-3">
+                  <div className="text-[9px] font-black text-white/20 tracking-[0.4em] uppercase">FOCUS_03</div>
+                  <div className="text-base font-bold text-white tracking-tight uppercase">Signal Processing</div>
                 </div>
               </div>
             </div>
@@ -157,7 +134,7 @@ export default function Home() {
 
         {/* PROJECTS SECTION */}
         <AnimatedSection id="projects" className="space-y-12">
-          <div className="flex items-center gap-8 mb-4">
+          <div className="flex items-center gap-12 mb-8">
             <h2 className="text-[10px] font-black text-white/40 tracking-[0.5em] uppercase">
               / FEATURED WORK
             </h2>
@@ -177,29 +154,32 @@ export default function Home() {
         </AnimatedSection>
 
         {/* CONTACT SECTION */}
-        <AnimatedSection id="contact" className="py-20 border-t border-white/5">
-          <div className="max-w-2xl">
-            <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-10">
-              LET&apos;S BUILD THE FUTURE.
+        <AnimatedSection id="contact" className="py-32 border-t border-white/5">
+          <div className="max-w-3xl">
+            <h2 className="text-6xl md:text-9xl font-black tracking-tighter mb-12 leading-[0.85] uppercase">
+              LET&apos;S BUILD<br />THE FUTURE.
             </h2>
-            <p className="text-xl text-zinc-400 mb-12 font-light">
+            <p className="text-xl md:text-2xl text-zinc-400 mb-16 font-light max-w-xl">
               Always open to research collaborations, technical discussions, or exploring new frontiers in engineering.
             </p>
-            <div className="flex flex-wrap gap-8">
+            <div className="flex flex-wrap gap-8 items-center">
               <a
                 href="mailto:ejaebker@purdue.edu"
-                className="group relative flex items-center gap-4 px-10 py-5 rounded-full bg-white text-black transition-all duration-700 hover:scale-105"
+                className="group relative flex items-center gap-6 px-12 py-6 rounded-full bg-white text-black transition-all duration-700 hover:scale-105"
               >
-                <span className="text-[11px] font-black tracking-[0.3em]">EMAIL ME</span>
-                <div className="w-2 h-2 bg-blue-500 rounded-full" />
+                <span className="text-[11px] font-black tracking-[0.4em] uppercase">EMAIL ME</span>
+                <svg className="w-4 h-4 transition-transform duration-700 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
               </a>
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 px-10 py-5 rounded-full border border-white/10 text-white hover:bg-white/5 transition-all duration-700"
+                className="group relative py-2"
               >
-                <span className="text-[11px] font-black tracking-[0.3em]">LINKEDIN</span>
+                <span className="text-[10px] md:text-[11px] font-black tracking-[0.4em] text-white/60 group-hover:text-white transition-colors duration-500 uppercase">LINKEDIN</span>
+                <div className="absolute bottom-0 left-0 w-full h-px bg-white/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
               </a>
             </div>
           </div>

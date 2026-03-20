@@ -31,21 +31,25 @@ A professional engineering portfolio built with **Next.js (App Router)**, **Type
 ## Design Context
 
 ### Users
-- **Recruiters & Hiring Managers:** Looking for technical proficiency, experience, and clear contact points.
-- **Fellow Researchers:** Interested in technical depth, publications, and specific engineering insights.
+- **Recruiters & Hiring Managers:** Looking for high-level impact, professional polish, and technical maturity.
+- **Fellow Researchers:** Interested in clean, sophisticated presentation of complex technical narratives.
 
 ### Brand Personality
-- **Voice/Tone:** Professional but visionary. 
-- **Keywords:** Futuristic, Minimal, Clean.
-- **Emotional Goals:** Awe through subtle motion, clarity through structure, and confidence through technical detail.
+- **Voice/Tone:** Sophisticated, precise, and forward-thinking.
+- **Keywords:** Clean, Forward-thinking, Unique.
+- **Emotional Goals:** Professional confidence, quiet authority, and visual clarity.
 
 ### Aesthetic Direction
-- **Visual Tone:** High-contrast minimalism with organic, fluid movements.
-- **References:** [Zaha Hadid](https://www.zaha-hadid.com/) (eclectic minimalism), [Lusion](https://lusion.co/) (nature-inspired motion).
-- **Anti-References:** Corporate genericism, rigid/cluttered layouts, "template-like" appearance.
+- **Visual Tone:** Expressive Editorial. High-contrast typography, grid-breaking layouts, and zero-color monochrome depth.
+- **References:** 
+  - [Gareth Hughes](https://www.gareth-hughes.com/) (typography-as-structure)
+  - [Lorenzo Daldosso](https://www.lorenzodaldosso.it/) (characterful interactions)
+  - [Visitors.now](https://visitors.now/) (immersive atmospheric fluidity)
+- **Anti-References:** Cyberpunk clutter, technical jargon overlays, neon colors, busy patterns, corporate genericism.
 
 ### Design Principles
-1. **Motion as Narrative:** Every interaction should feel fluid and intentional, mirroring the "nature and movement" of Lusion.
-2. **Structural Minimalism:** Use space and typography to create hierarchy, inspired by the bold, sweeping forms of Zaha Hadid.
-3. **Futuristic Clarity:** Maintain a "neon" or high-tech edge while ensuring information is extremely easy to parse.
-4. **Organic Precision:** Blend precise engineering details with soft, organic transitions and background effects.
+1. **Typographic Hierarchy:** Lead with bold, large-scale typography (inspired by Gareth Hughes) that defines the layout's structure and acts as a visual texture.
+2. **Atmospheric Fluidity:** Maintain a continuous, organic background movement (inspired by Visitors.now) using monochromatic noise and gradients to create a living environment.
+3. **Architectural Composition:** Use white space and grid-breaking layouts to create an editorial feel that guides focus and creates a sense of scale.
+4. **Characterful Precision:** Implement subtle, unique interactions (inspired by Daldosso) that invert grayscale values or shift opacity to signify interactivity without using color.
+5. **Balanced Maturity:** Ensure that despite the experimental layout and strict monochrome, high contrast and readability are preserved for a professional experience.

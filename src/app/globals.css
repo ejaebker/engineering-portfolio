@@ -17,56 +17,62 @@
 
 @keyframes mesh-float {
   0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-  33% { transform: translate(1%, -1%) scale(1.05) rotate(0.5deg); }
-  66% { transform: translate(-1%, 1%) scale(0.95) rotate(-0.5deg); }
+  33% { transform: translate(2%, -2%) scale(1.1) rotate(1deg); }
+  66% { transform: translate(-2%, 2%) scale(0.9) rotate(-1deg); }
   100% { transform: translate(0, 0) scale(1) rotate(0deg); }
 }
 
 @keyframes grain {
   0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-0.5%, -0.5%); }
-  20% { transform: translate(0.5%, 0.5%); }
-  30% { transform: translate(-1%, -1%); }
-  40% { transform: translate(1%, 1%); }
-  50% { transform: translate(-0.5%, 0.5%); }
+  10% { transform: translate(-1%, -1%); }
+  20% { transform: translate(1%, 1%); }
+  30% { transform: translate(-2%, -2%); }
+  40% { transform: translate(2%, 2%); }
+  50% { transform: translate(-1%, 1%); }
 }
 
 body {
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
-  background-color: transparent;
+  background-color: #030303;
   color: #f0f0f0;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  cursor: none; /* Hide default cursor */
 }
 
-/* Sophisticated Monochrome Liquid Background */
+/* Ensure links and buttons still show interactivity for the custom cursor via components if needed, but here we just hide the default */
+a, button {
+  cursor: none;
+}
+
+/* Sophisticated Monochrome Liquid Background - Refined for Atmospheric Fluidity */
 body::before {
   content: "";
   position: fixed;
-  inset: -50%;
+  inset: -100%;
   z-index: -10;
   pointer-events: none;
   background: 
-    radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
-    radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 45%),
-    radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
-    radial-gradient(circle at 10% 85%, rgba(255, 255, 255, 0.03) 0%, transparent 40%);
-  filter: blur(120px);
-  animation: mesh-float 60s ease-in-out infinite;
+    radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 10% 85%, rgba(255, 255, 255, 0.04) 0%, transparent 40%);
+  filter: blur(140px);
+  animation: mesh-float 80s ease-in-out infinite;
 }
 
 body::after {
   content: "";
   position: fixed;
-  inset: -50%;
+  inset: -100%;
   z-index: -10;
   pointer-events: none;
   background: 
-    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
-    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.01) 0%, transparent 45%);
-  filter: blur(140px);
-  animation: mesh-float 80s ease-in-out infinite reverse;
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 45%);
+  filter: blur(160px);
+  animation: mesh-float 100s ease-in-out infinite reverse;
 }
 
 /* Ultra-subtle Architectural Guide Lines */
@@ -76,24 +82,23 @@ body::after {
   z-index: -5;
   pointer-events: none;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 100px 100px;
-  mask-image: radial-gradient(circle at center, black 10%, transparent 90%);
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 150px 150px;
+  mask-image: radial-gradient(circle at center, black 10%, transparent 80%);
 }
 
 .noise {
   position: fixed;
-  top: -150%;
-  left: -150%;
-  width: 400%;
-  height: 400%;
+  inset: -200%;
+  width: 500%;
+  height: 500%;
   background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  filter: contrast(140%) brightness(100%);
+  filter: contrast(150%) brightness(100%);
   z-index: -1;
   pointer-events: none;
-  opacity: 0.025;
-  animation: grain 10s steps(10) infinite;
+  opacity: 0.03;
+  animation: grain 8s steps(10) infinite;
 }
 
 /* Light mode override - Quiet Neutral */
