@@ -2,10 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { useTheme } from 'next-themes';
 
 export default function CustomCursor() {
-  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -58,15 +56,11 @@ export default function CustomCursor() {
 
   if (!mounted) return null;
 
-  const isDark = resolvedTheme === 'dark';
-
   return (
     <div className="fixed inset-0 pointer-events-none z-[9999] hidden md:block">
       {/* Precision Surgical Dot */}
       <motion.div
-        className={`absolute w-1.5 h-1.5 rounded-full ${
-          isDark ? 'bg-white' : 'bg-black'
-        }`}
+        className="absolute w-1.5 h-1.5 rounded-full bg-[var(--foreground)]"
         style={{
           x: smoothX,
           y: smoothY,

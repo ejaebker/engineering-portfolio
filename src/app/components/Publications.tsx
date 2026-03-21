@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import PublicationsList from './PublicationsList';
 
 interface Author {
@@ -55,7 +56,6 @@ export default function Publications({ limit, isArchive = false }: { limit?: num
           } else {
             setError('generic');
           }
-          console.error('[Publications Fetch Error]:', err.message);
         }
       } finally {
         setLoading(false);
@@ -70,7 +70,7 @@ export default function Publications({ limit, isArchive = false }: { limit?: num
   }, [authorId, retryCount, limit]);
 
   if (loading) {
-    return <div className="text-[var(--text-secondary)] font-medium text-[10px] tracking-[0.3em] animate-pulse flex items-center gap-4 uppercase">
+    return <div className="text-[var(--text-secondary)] font-medium text-[10px] tracking-[0.4em] animate-pulse flex items-center gap-4 uppercase">
       <div className="w-4 h-px bg-zinc-900/10 dark:bg-white/40" />
       Updating Research Index
     </div>;
@@ -85,13 +85,14 @@ export default function Publications({ limit, isArchive = false }: { limit?: num
 
     return (
       <div className="space-y-6">
-        <div className="text-[var(--text-muted)] font-medium text-[10px] tracking-[0.3em] uppercase flex items-center gap-4">
+        <div className="text-[var(--text-muted)] font-medium text-[10px] tracking-[0.4em] uppercase flex items-center gap-4">
           <div className="w-4 h-px bg-[var(--divider)]" />
           {errorMsg}
         </div>
         <button 
           onClick={() => setRetryCount(prev => prev + 1)}
-          className="text-[10px] font-black tracking-[0.4em] uppercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all underline underline-offset-8 decoration-[var(--divider)]"
+          className="text-[10px] font-black tracking-[0.4em] uppercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all underline underline-offset-8 decoration-[var(--divider)] focus-visible:ring-2 focus-visible:ring-[var(--text-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] outline-none"
+          aria-label="Retry fetching publications"
         >
           FORCE_RECONNECT
         </button>
@@ -100,7 +101,25 @@ export default function Publications({ limit, isArchive = false }: { limit?: num
   }
 
   if (papers.length === 0) {
-    return <div className="text-[var(--text-secondary)] font-medium text-[10px] tracking-[0.3em] italic uppercase">No publications found for this index.</div>;
+    return (
+      <div className="space-y-8 py-4">
+        <div className="flex flex-col gap-4">
+          <div className="text-[var(--text-secondary)] font-medium text-[10px] tracking-[0.4em] uppercase flex items-center gap-4">
+            <div className="w-4 h-px bg-[var(--divider)]" />
+            NO_PUBLICATIONS_LOADED
+          </div>
+          <p className="text-[var(--text-muted)] text-[10px] tracking-[0.2em] max-w-md uppercase leading-loose">
+            The research database is currently being re-indexed or the requested author ID has no public records. Please refer to the featured projects for recent engineering developments.
+          </p>
+        </div>
+        <Link 
+          href="#projects" 
+          className="text-[10px] font-black tracking-[0.4em] uppercase text-[var(--text-primary)] hover:underline underline-offset-8 decoration-[var(--divider)] transition-all"
+        >
+          EXPLORE_PROJECTS
+        </Link>
+      </div>
+    );
   }
 
   return <PublicationsList papers={papers} isArchive={isArchive} />;

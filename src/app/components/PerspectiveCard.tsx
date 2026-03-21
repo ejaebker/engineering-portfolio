@@ -2,10 +2,8 @@
 
 import React from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useTheme } from "next-themes";
 
 export default function PerspectiveCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const { resolvedTheme } = useTheme();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -58,7 +56,7 @@ export default function PerspectiveCard({ children, className = "" }: { children
           background: useTransform(
             [mouseX, mouseY],
             ([mdX, mdY]) => {
-              const color = resolvedTheme === 'dark' ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)';
+              const color = 'var(--divider)';
               return `radial-gradient(600px circle at ${mdX}px ${mdY}px, ${color}, transparent 40%)`;
             }
           ),

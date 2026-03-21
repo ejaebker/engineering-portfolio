@@ -1,11 +1,27 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useTheme } from 'next-themes';
 
 export default function DodecahedronLogo() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const themeRef = useRef(resolvedTheme);
+
+  // Update theme ref for the animation loop
+  useEffect(() => {
+    themeRef.current = resolvedTheme;
+  }, [resolvedTheme]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     // Golden Ratio for Dodecahedron Geometry
     const phi = (1 + Math.sqrt(5)) / 2;
     const vertices = [
@@ -64,44 +80,48 @@ export default function DodecahedronLogo() {
         return [nx * factor * scale + centerX, ny * factor * scale + centerY, nz];
       });
 
+      // Use the ref for instant theme updates in the loop
+      const isDark = themeRef.current === 'dark';
+      const colorBase = isDark ? '255, 255, 255' : '0, 0, 0';
+
       // Draw Edges with Z-Depth based opacity
       edges.forEach(([v1, v2]) => {
         const p1 = rotatedVertices[v1];
         const p2 = rotatedVertices[v2];
         const avgZ = (p1[2] + p2[2]) / 2;
-        
-        // Depth-based opacity: closer is brighter
         const opacity = Math.max(0.1, 0.5 - avgZ / 5);
         
         ctx.beginPath();
         ctx.moveTo(p1[0], p1[1]);
         ctx.lineTo(p2[0], p2[1]);
-        ctx.strokeStyle = `rgba(161, 161, 170, ${opacity})`; // Neutral gray
+        ctx.strokeStyle = `rgba(${colorBase}, ${opacity})`;
         ctx.lineWidth = 1;
         ctx.stroke();
       });
 
       // Center Precision Point
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, 0.8, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(161, 161, 170, 0.5)';
-      ctx.fill();
+      ctx.fillStyle = `rgba(${colorBase}, 0.5)`;
+      ctx.fillRect(centerX - 0.5, centerY - 0.5, 1, 1);
 
       animationFrameId = requestAnimationFrame(render);
     };
 
     render();
     return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  }, [mounted]);
+
+  if (!mounted) return <div className="w-11 h-11" />;
 
   return (
-    <div className="relative w-10 h-10 flex items-center justify-center group/logo">
-      <div className="absolute inset-0 bg-white dark:bg-zinc-100 opacity-0 group-hover/logo:opacity-10 blur-xl transition-opacity duration-700 rounded-full" />
+    <div className="relative w-11 h-11 flex items-center justify-center group/logo">
+      <div className="absolute inset-0 border border-[var(--text-primary)] opacity-0 group-hover/logo:opacity-10 transition-opacity duration-700" />
       <canvas 
         ref={canvasRef} 
-        width={80} 
-        height={80} 
-        className="w-10 h-10 opacity-60 group-hover/logo:opacity-100 transition-opacity duration-700"
+        width={88} 
+        height={88} 
+        className="w-11 h-11 opacity-60 group-hover/logo:opacity-100 transition-opacity duration-700"
+        role="img"
+        aria-label="3D Dodecahedron Logo"
       />
     </div>
   );

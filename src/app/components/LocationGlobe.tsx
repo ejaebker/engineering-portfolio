@@ -6,7 +6,7 @@ import * as THREE from 'three';
 
 const Globe = dynamic(() => import('react-globe.gl'), { 
   ssr: false,
-  loading: () => <div className="w-full h-full bg-zinc-900/10 rounded-full animate-pulse" />
+  loading: () => <div className="w-full h-full bg-zinc-900/5 dark:bg-white/5 border border-[var(--divider)] animate-pulse" />
 });
 
 export default function LocationGlobe() {

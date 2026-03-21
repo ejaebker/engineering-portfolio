@@ -1,16 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo, memo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import PerspectiveCard from './PerspectiveCard';
 
-export default function Projects() {
+const Projects = memo(function Projects() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  const projects = [
+  const projects = useMemo(() => [
     {
       id: 1,
       title: "Edge Compute Optimization",
@@ -38,7 +38,7 @@ export default function Projects() {
       link: "https://github.com",
       year: 2023,
     },
-  ];
+  ], []);
 
   const handleNext = () => {
     setDirection(1);
@@ -51,6 +51,31 @@ export default function Projects() {
   };
 
   const currentProject = projects[currentIndex];
+
+  if (projects.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-24 border border-dashed border-[var(--divider)] rounded-[3rem] text-center px-8">
+        <div className="w-12 h-12 mb-8 border border-[var(--divider)] flex items-center justify-center opacity-40">
+          <span className="text-[10px] font-mono tracking-widest text-[var(--text-muted)]">404</span>
+        </div>
+        <span className="type-meta mb-4">SYSTEM_STATUS // NO_ACTIVE_PROJECTS</span>
+        <p className="text-[var(--text-secondary)] text-sm max-w-sm mb-12 font-light leading-relaxed text-measure">
+          The project directory is currently being restructured for the 2026 technical roadmap. In the meantime, explore my published research and peer-reviewed contributions.
+        </p>
+        <Link 
+          href="#publications" 
+          className="group relative inline-flex items-center gap-6 px-10 py-5 bg-transparent border-x border-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--background)] transition-all duration-500"
+        >
+          <div className="absolute top-0 left-0 w-4 h-px bg-[var(--text-primary)] group-hover:bg-transparent" />
+          <div className="absolute bottom-0 right-0 w-4 h-px bg-[var(--text-primary)] group-hover:bg-transparent" />
+          <span className="type-meta text-inherit">VIEW_RESEARCH_INDEX</span>
+          <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </Link>
+      </div>
+    );
+  }
 
   const variants = {
     enter: (dir: number) => ({
@@ -75,7 +100,7 @@ export default function Projects() {
   return (
     <div className="space-y-12">
       {/* Carousel Container */}
-      <div className="relative min-h-[500px] md:min-h-[400px]">
+      <div className="relative min-h-[550px] md:min-h-[450px]">
         <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
             key={currentIndex}
@@ -91,12 +116,11 @@ export default function Projects() {
             }}
             className="w-full h-full"
           >
-            <PerspectiveCard className="rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-[var(--divider)] bg-black/[0.01] dark:bg-white/[0.01] p-6 md:p-16 backdrop-blur-3xl shadow-[0_40px_100px_rgba(0,0,0,0.3)]">
+            <PerspectiveCard className="rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-[var(--divider)] bg-[var(--background)] p-6 md:p-16">
               <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
-                {/* Image Section - Left (Takes more space, asymmetric) */}
+                {/* Image Section - Left */}
                 <div className="relative group lg:w-[55%] shrink-0">
-                  <div className="absolute -inset-6 bg-black/5 dark:bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-1000" />
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-[2rem] md:rounded-[3rem] border border-[var(--divider)] shadow-2xl transition-transform duration-700 group-hover:scale-[1.01]">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-[2rem] md:rounded-[3rem] border border-[var(--divider)] transition-transform duration-700 group-hover:scale-[1.01]">
                     <Image
                       src={currentProject.image}
                       alt={currentProject.title}
@@ -111,58 +135,52 @@ export default function Projects() {
                   <div className="absolute -top-3 -left-3 w-12 h-12 border-t border-l border-[var(--divider)] rounded-tl-2xl pointer-events-none" />
                   <div className="absolute -bottom-3 -right-3 w-12 h-12 border-b border-r border-[var(--divider)] rounded-br-2xl pointer-events-none" />
                   
-                  <div className="absolute top-8 right-8 bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 dark:border-white/5 px-4 py-2 rounded-full hidden md:block">
-                    <span className="text-[10px] font-black tracking-widest text-white/90">PROJECT_0{currentIndex + 1}</span>
+                  <div className="absolute top-8 right-8 bg-[var(--background)]/10 backdrop-blur-md border border-[var(--divider)] px-4 py-2 rounded-full hidden md:block">
+                    <span className="type-meta text-[var(--text-primary)] opacity-60 dark:opacity-90">PROJECT_0{currentIndex + 1}</span>
                   </div>
                 </div>
 
-                {/* Content Section - Right (Asymmetric spacing) */}
+                {/* Content Section - Right */}
                 <div className="flex flex-col lg:pt-8 flex-1">
                   <div className="space-y-8">
-                    <div className="space-y-2">
-                      <span className="text-[10px] text-[var(--text-muted)] font-black tracking-[0.5em] uppercase">
+                    <div className="space-y-4">
+                      <span className="type-meta">
                         EST. {currentProject.year}
                       </span>
-                      <h3 className="text-4xl md:text-6xl font-extrabold font-display text-[var(--text-primary)] tracking-tighter leading-[0.9] mb-4 md:mb-6 uppercase">
+                      <h3 className="type-h1 uppercase">
                         {currentProject.title}
                       </h3>
                     </div>
                     
-                    <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed font-light">
+                    <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed font-light line-clamp-3 text-measure">
                       {currentProject.description}
                     </p>
 
-                    {/* Technologies - More minimal */}
+                    {/* Technologies - Technical Square style */}
                     <div className="flex flex-wrap gap-x-6 gap-y-3 pt-4">
                       {currentProject.technologies.map((tech) => (
                         <div key={tech} className="flex items-center gap-2">
-                          <div className="w-1 h-1 bg-[var(--text-muted)] rounded-full" />
-                          <span className="text-[10px] font-bold tracking-[0.2em] text-[var(--text-muted)] uppercase">
+                          <div className="w-1 h-1 bg-[var(--text-muted)]" />
+                          <span className="type-meta">
                             {tech}
                           </span>
                         </div>
                       ))}
                     </div>
 
-                    {/* Action Buttons - Distinctive Styling */}
+                    {/* Action Button - Architectural style */}
                     <div className="flex flex-col sm:flex-row gap-6 pt-8">
-                      <a
-                        href={currentProject.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group relative flex items-center justify-center px-10 py-4 bg-zinc-900 dark:bg-[var(--text-primary)] text-white dark:text-[var(--background)] transition-all duration-500 hover:scale-105"
-                      >
-                        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/30 dark:border-black/30" />
-                        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/30 dark:border-black/30" />
-                        <span className="text-[10px] font-black tracking-[0.4em] uppercase">VIEW_SOURCE</span>
-                      </a>
                       <Link
                         href={`/projects/${currentProject.id}`}
-                        className="group relative flex items-center justify-center px-10 py-4 border border-[var(--divider)] bg-transparent text-[var(--text-primary)] transition-all duration-500 hover:bg-[var(--text-primary)] hover:text-[var(--background)]"
+                        className="group relative inline-flex items-center justify-center px-10 py-5 bg-transparent border-x border-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--background)] transition-all duration-500"
+                        aria-label={`View details for ${currentProject.title}`}
                       >
-                        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-[var(--divider)] group-hover:border-transparent" />
-                        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[var(--divider)] group-hover:border-transparent" />
-                        <span className="text-[10px] font-black tracking-[0.4em] uppercase">DETAILS</span>
+                        <div className="absolute top-0 left-0 w-4 h-px bg-[var(--text-primary)] group-hover:bg-transparent" />
+                        <div className="absolute bottom-0 right-0 w-4 h-px bg-[var(--text-primary)] group-hover:bg-transparent" />
+                        <span className="type-meta text-inherit">VIEW_DETAILS</span>
+                        <svg className="w-4 h-4 ml-4 transition-transform duration-500 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
                       </Link>
                     </div>
                   </div>
@@ -177,7 +195,7 @@ export default function Projects() {
       <div className="flex items-center justify-center gap-12 px-2">
         <button
           onClick={handlePrev}
-          className="p-5 md:p-4 rounded-full border border-[var(--divider)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-black/20 dark:hover:border-white/40 transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+          className="p-5 md:p-4 rounded-full border border-[var(--divider)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--text-primary)] transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
           aria-label="Previous project"
         >
           <svg className="w-6 h-6 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -185,16 +203,16 @@ export default function Projects() {
           </svg>
         </button>
 
-        <div className="flex gap-4 md:gap-6 items-center py-4">
+        <div className="flex gap-2 md:gap-4 items-center py-4">
           {projects.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className="group relative flex items-center justify-center p-2"
+              className="group relative flex items-center justify-center p-4"
               aria-label={`Go to project ${index + 1}`}
             >
               <div className={`h-1.5 transition-all duration-700 rounded-full ${
-                index === currentIndex ? 'w-12 bg-black/60 dark:bg-white/90' : 'w-4 bg-[var(--divider)] group-hover:bg-black/30 dark:group-hover:bg-white/40'
+                index === currentIndex ? 'w-12 bg-[var(--text-primary)] opacity-60 dark:opacity-90' : 'w-4 bg-[var(--divider)] group-hover:bg-[var(--text-primary)] group-hover:opacity-30'
               }`} />
             </button>
           ))}
@@ -202,7 +220,7 @@ export default function Projects() {
 
         <button
           onClick={handleNext}
-          className="p-5 md:p-4 rounded-full border border-[var(--divider)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-black/20 dark:hover:border-white/40 transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+          className="p-5 md:p-4 rounded-full border border-[var(--divider)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--text-primary)] transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
           aria-label="Next project"
         >
           <svg className="w-6 h-6 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -212,4 +230,6 @@ export default function Projects() {
       </div>
     </div>
   );
-}
+});
+
+export default Projects;

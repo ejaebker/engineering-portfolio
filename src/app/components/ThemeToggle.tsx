@@ -13,7 +13,7 @@ export default function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    return <div className="fixed top-6 right-6 z-50 w-10 h-10" />;
+    return <div className="w-10 h-10" />;
   }
 
   const toggleTheme = () => {
@@ -23,12 +23,12 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-3 rounded-full hover:bg-black/[0.05] dark:hover:bg-white/[0.05] transition-all duration-500 group/toggle outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+      className="p-3.5 rounded-full hover:bg-[var(--text-primary)]/10 transition-all duration-500 group/toggle outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
       aria-label="Toggle theme"
     >
       {resolvedTheme === 'dark' ? (
         <svg
-          className="w-4 h-4 text-zinc-900/40 dark:text-white/60 group-hover/toggle:text-black dark:group-hover/toggle:text-white transition-colors"
+          className="w-4 h-4 text-[var(--text-primary)] opacity-40 group-hover/toggle:opacity-100 transition-opacity duration-500"
           fill="none"
           stroke="currentColor"
           strokeWidth="2.5"
@@ -38,7 +38,7 @@ export default function ThemeToggle() {
         </svg>
       ) : (
         <svg
-          className="w-4 h-4 text-zinc-900/40 dark:text-white/60 group-hover/toggle:text-black dark:group-hover/toggle:text-white transition-colors"
+          className="w-4 h-4 text-[var(--text-primary)] opacity-40 group-hover/toggle:opacity-100 transition-opacity duration-500"
           fill="none"
           stroke="currentColor"
           strokeWidth="2.5"

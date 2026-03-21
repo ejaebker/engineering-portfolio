@@ -12,22 +12,41 @@
 }
 
 :root {
-  --background: #fdfdfc; /* Warm, off-white paper/titanium tone */
-  --foreground: #121212; /* Deep 'ink' black */
+  --background: #F8F9FA; 
+  --foreground: #121212; 
   --text-primary: #121212;
-  --text-secondary: #3f3f46; /* Tinted neutral */
-  --text-muted: #71717a;    /* Tinted neutral */
+  --text-secondary: #3f3f46; 
+  --text-muted: #71717a;    
   --divider: rgba(18, 18, 18, 0.08);
   color-scheme: light dark;
+
+  /* ─────── ⚡ TYPESET: Semantic Scale ─────── */
+  --type-hero: clamp(3.5rem, 12vw, 11rem);
+  --type-cta: clamp(3.75rem, 8vw, 8rem);
+  --type-h1: clamp(1.6rem, 3.5vw, 2.8rem);
+  --type-h2: clamp(1.25rem, 3vw, 2.5rem);
+  --type-body: clamp(1rem, 1.2vw, 1.25rem);
+  --type-meta: 10px;
+
+  /* ─────── ⚡ TYPESET: Leading (Line Height) ─────── */
+  --leading-tight: 0.85;
+  --leading-display: 1.1;
+  --leading-body: 1.6;
+
+  /* ─────── ⚡ TYPESET: Tracking (Letter Spacing) ─────── */
+  --tracking-hero: -0.04em;
+  --tracking-display: -0.02em;
+  --tracking-body: -0.01em;
+  --tracking-meta: 0.4em;
 }
 
 .dark {
-  --background: #080808; /* Deeper, more 'brutalist' black */
-  --foreground: #fcfcfc;
-  --text-primary: #fcfcfc;
+  --background: #0c0c0e; /* Tinted neutral: subtle blue/purple chroma */
+  --foreground: #fcfcfd;
+  --text-primary: #fcfcfd;
   --text-secondary: #d4d4d8;
   --text-muted: #a1a1aa;
-  --divider: rgba(252, 252, 252, 0.1);
+  --divider: rgba(252, 252, 253, 0.1);
 }
 
 html {
@@ -35,6 +54,11 @@ html {
   color: var(--foreground) !important;
   transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   scroll-behavior: smooth;
+  
+  /* ─────── ⚡ TYPESET: High-End Rendering ─────── */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -42,19 +66,60 @@ body {
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
-  letter-spacing: -0.01em;
-  cursor: none;
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
+}
+
+/* ─────── ⚡ TYPESET: Utility Classes ─────── */
+.type-hero {
+  font-family: var(--font-display);
+  font-size: var(--type-hero);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-hero);
+  font-weight: 800;
+}
+
+.type-cta {
+  font-family: var(--font-display);
+  font-size: var(--type-cta);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-hero);
+  font-weight: 800;
+}
+
+.type-h1 {
+  font-family: var(--font-display);
+  font-size: var(--type-h1);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
+}
+
+.type-h2 {
+  font-family: var(--font-display);
+  font-size: var(--type-h2);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: 700;
+}
+
+.type-meta {
+  font-size: var(--type-meta);
+  font-weight: 900;
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.text-measure {
+  max-width: 65ch; /* Optimal line length for readability */
 }
 
 /* Standardized Transitions for Interactive Elements */
 a, button, .transition-all {
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
   transition-duration: 600ms !important;
-}
-
-/* Hide default cursor on interactive elements */
-a, button {
-  cursor: none;
 }
 
 .bg-noise {
@@ -111,9 +176,41 @@ html:not(.dark) .bg-grid-lines {
   }
 }
 
-/* Accessibility: High-contrast focus states for keyboard navigation */
-:focus-visible {
-  outline: 2px solid #3b82f6;
-  outline-offset: 4px;
+/* ─────── ⚡ OVERDRIVE: View Transitions ─────── */
+@view-transition {
+  navigation: auto; /* Enable cross-document transitions where supported */
 }
 
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Shared Element Names */
+.logo-transition {
+  view-transition-name: logo-mark;
+}
+
+.header-transition {
+  view-transition-name: page-header;
+}
+
+.content-transition {
+  view-transition-name: main-content;
+}
+
+/* Accessibility: Respect preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* Accessibility: High-contrast focus states for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 4px;
+}

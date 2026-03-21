@@ -101,35 +101,38 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
     <div className="relative pb-20 min-h-screen overflow-hidden">
       <Navbar />
 
-      <main className="max-w-[1600px] mx-auto px-8 md:px-16 pt-28 md:pt-40 relative">
-        {/* Massive Background Title - Grid Breaking */}
+      <main id="main-content" className="max-w-[1600px] mx-auto px-8 md:px-16 lg:px-24 pt-28 md:pt-40 relative">
+        {/* Massive Background Title */}
         <div className="absolute top-[10vh] left-[-5vw] pointer-events-none select-none z-0 opacity-[0.03] dark:opacity-[0.05]">
-          <h1 className="text-[clamp(6rem,20vw,25rem)] font-black text-[var(--text-primary)] leading-none uppercase tracking-tighter whitespace-nowrap">
+          <h1 className="text-[clamp(6rem,20vw,25rem)] font-black text-[var(--text-primary)] leading-none uppercase tracking-tighter whitespace-nowrap header-transition">
             {project.title.split(' ')[0]}
           </h1>
         </div>
 
-        {/* Back Button */}
+        {/* Back Button - Architectural Style */}
         <Link
           href="/#projects"
-          className="group relative z-10 inline-flex items-center gap-4 text-[10px] font-black tracking-[0.4em] text-[var(--text-muted)] hover:text-black dark:hover:text-white transition-all mb-12"
+          className="group relative z-10 inline-flex items-center gap-6 px-8 py-5 border-x border-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--background)] transition-all duration-500 mb-8"
+          aria-label="Back to projects"
         >
+          <div className="absolute top-0 left-0 w-3 h-px bg-[var(--text-primary)] group-hover:bg-transparent" />
+          <div className="absolute bottom-0 right-0 w-3 h-px bg-[var(--text-primary)] group-hover:bg-transparent" />
           <svg className="w-4 h-4 transition-transform group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
             <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
-          BACK_TO_WORK
+          <span className="type-meta">BACK_TO_HOME</span>
         </Link>
 
         {/* Hero Header - Asymmetric Grid */}
-        <div className="relative z-10 grid lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-24 items-start mb-24 md:mb-40">
-          <div className="space-y-8 md:space-y-12">
-            <div className="flex items-center gap-6">
-              <span className="text-[9px] md:text-[10px] text-[var(--text-muted)] font-black tracking-[0.5em] uppercase">
+        <div className="relative z-10 grid lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-24 items-start mb-32 md:mb-48">
+          <div className="space-y-8">
+            <div className="flex items-center gap-6 mb-8">
+              <span className="type-meta">
                 {project.year} {"//"} PROJECT_NODE
               </span>
               <div className="h-px w-24 bg-[var(--divider)]" />
             </div>
-            <h1 className="text-5xl md:text-[clamp(4rem,10vw,9rem)] font-black text-[var(--text-primary)] tracking-tighter leading-[0.8] uppercase max-w-4xl">
+            <h1 className="text-5xl md:text-[clamp(4rem,10vw,9rem)] font-black text-[var(--text-primary)] tracking-tighter leading-[0.8] uppercase max-w-4xl mb-8">
               {project.title}
             </h1>
             <p className="text-xl md:text-3xl text-[var(--text-secondary)] font-light leading-tight max-w-2xl">
@@ -140,27 +143,36 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
           {/* Floating Metadata - Aligned Right */}
           <aside className="lg:pt-24 space-y-12 border-l border-[var(--divider)] pl-12 hidden lg:block">
             <div className="space-y-4">
-              <h2 className="text-[10px] font-black text-[var(--text-primary)] tracking-[0.5em] uppercase">/ STACK</h2>
+              <h2 className="type-meta !text-[var(--text-primary)]">/ STACK</h2>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((tech: string) => (
-                  <span key={tech} className="text-[9px] font-black tracking-[0.2em] text-[var(--text-muted)] uppercase">{tech}</span>
+                  <span key={tech} className="type-meta">{tech}</span>
                 ))}
               </div>
             </div>
             <div className="space-y-4">
-              <h2 className="text-[10px] font-black text-[var(--text-primary)] tracking-[0.5em] uppercase">/ REPOSITORY</h2>
-              <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 rounded-xl border border-[var(--divider)] bg-black/[0.02] dark:bg-white/[0.02] text-xs font-bold hover:bg-[var(--text-primary)] hover:text-[var(--background)] tracking-widest transition-all uppercase underline-offset-8">VIEW_SOURCE_CODE</a>
+              <h2 className="type-meta !text-[var(--text-primary)]">/ REPOSITORY</h2>
+              <a 
+                href={project.link} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-block px-6 py-4 border border-[var(--divider)] bg-[var(--background)] text-[10px] font-black hover:bg-[var(--text-primary)] hover:text-[var(--background)] tracking-[0.4em] transition-all uppercase"
+                aria-label={`View source code for ${project.title} on GitHub`}
+              >
+                VIEW_SOURCE_CODE
+              </a>
             </div>
           </aside>
         </div>
 
         {/* Featured Image - Overlapping & Scaled */}
-        <div className="relative z-20 mb-24 md:mb-48">
-          <div className="relative aspect-[21/9] rounded-[3rem] md:rounded-[5rem] overflow-hidden border border-[var(--divider)] bg-zinc-100 dark:bg-zinc-900 group shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]">
+        <div className="relative z-20 mb-32 md:mb-48">
+          <div className="relative aspect-[21/9] rounded-[3rem] md:rounded-[5rem] overflow-hidden border border-[var(--divider)] bg-[var(--background)] group">
             <Image
               src={project.image}
               alt={project.title}
               fill
+              sizes="(max-w: 768px) 100vw, (max-w: 1600px) 90vw, 1400px"
               className="object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
               priority
             />
@@ -168,10 +180,10 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
             
             {/* Visual Callout Overlay */}
             <div className="absolute bottom-12 right-12 md:bottom-20 md:right-20 text-right">
-              <div className="text-[clamp(2rem,5vw,4rem)] font-black text-white leading-none uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity duration-1000 translate-y-4 group-hover:translate-y-0 transition-transform">
+              <div className="text-[clamp(2rem,5vw,4rem)] font-black text-white leading-none uppercase tracking-tighter opacity-40 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-1000 translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform">
                 VISUAL_SIG
               </div>
-              <div className="text-[10px] font-mono text-white/40 tracking-[0.5em] uppercase">REF_ID // {project.id.toString().padStart(4, '0')}</div>
+              <div className="text-[10px] font-mono text-white/40 tracking-[0.4em] uppercase">REF_ID // {project.id.toString().padStart(4, '0')}</div>
             </div>
           </div>
         </div>
@@ -180,7 +192,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
         <div className="relative z-10 grid lg:grid-cols-[0.8fr_1.2fr] gap-16 md:gap-32 items-start mb-40">
           <div className="lg:sticky lg:top-40 space-y-16">
             <div className="space-y-8">
-              <h2 className="text-[10px] font-black text-[var(--text-muted)] tracking-[0.5em] uppercase">01 {"//"} THE_CHALLENGE</h2>
+              <h2 className="type-meta">01 {"//"} THE_CHALLENGE</h2>
               <p className="text-lg md:text-2xl text-[var(--text-secondary)] font-light leading-relaxed">
                 {project.challenges}
               </p>
@@ -189,33 +201,38 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
             {/* Mobile Stack Info */}
             <div className="lg:hidden space-y-12">
                <div className="space-y-4">
-                <h2 className="text-[10px] font-black text-[var(--text-primary)] tracking-[0.5em] uppercase">/ STACK</h2>
+                <h2 className="type-meta !text-[var(--text-primary)]">/ STACK</h2>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech: string) => (
-                    <span key={tech} className="text-[9px] font-black tracking-[0.2em] text-[var(--text-muted)] uppercase">{tech}</span>
+                    <span key={tech} className="type-meta">{tech}</span>
                   ))}
                 </div>
               </div>
               <div className="space-y-4">
-                <h2 className="text-[10px] font-black text-[var(--text-primary)] tracking-[0.5em] uppercase">/ REPOSITORY</h2>
-                <a href={project.link} target="_blank" rel="noopener noreferrer" className="block text-xs font-bold hover:underline tracking-widest text-[var(--text-primary)] uppercase underline-offset-8">VIEW_SOURCE_CODE</a>
+                <h2 className="type-meta !text-[var(--text-primary)]">/ REPOSITORY</h2>
+                <a 
+                  href={project.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="inline-block px-6 py-4 border border-[var(--divider)] bg-[var(--background)] text-[10px] font-black hover:bg-[var(--text-primary)] hover:text-[var(--background)] tracking-[0.4em] transition-all uppercase"
+                  aria-label={`View source code for ${project.title} on GitHub`}
+                >
+                  VIEW_SOURCE_CODE
+                </a>
               </div>
             </div>
           </div>
 
           <div className="space-y-24">
-            <div className="space-y-8 p-12 md:p-20 rounded-[3rem] md:rounded-[4rem] bg-black/[0.02] dark:bg-white/[0.02] border border-[var(--divider)] backdrop-blur-3xl relative overflow-hidden group">
-              {/* Background Accent */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--divider)] blur-[100px] rounded-full" />
-              
-              <h2 className="text-[10px] font-black text-[var(--text-primary)] tracking-[0.5em] uppercase relative z-10">02 {"//"} THE_APPROACH</h2>
+            <div className="space-y-8 p-12 md:p-20 rounded-[3rem] md:rounded-[4rem] bg-[var(--background)] border border-[var(--divider)] relative overflow-hidden group">
+              <h2 className="type-meta !text-[var(--text-primary)] relative z-10">02 {"//"} THE_APPROACH</h2>
               <div className="text-xl md:text-3xl text-[var(--text-secondary)] leading-tight font-light whitespace-pre-line relative z-10">
                 {project.fullDescription}
               </div>
             </div>
 
             <div className="space-y-8 pl-12 md:pl-20 border-l-2 border-[var(--divider)]">
-              <h2 className="text-[10px] font-black text-[var(--text-muted)] tracking-[0.5em] uppercase">03 {"//"} FINAL_OUTCOME</h2>
+              <h2 className="type-meta relative z-10">03 {"//"} FINAL_OUTCOME</h2>
               <p className="text-xl md:text-4xl font-black text-[var(--text-primary)] leading-[0.9] uppercase tracking-tighter">
                 {project.outcome}
               </p>
