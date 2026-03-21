@@ -65,16 +65,16 @@ export default function TelemetryCapsule() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[100] pointer-events-none md:pointer-events-auto">
+    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[100] pointer-events-none md:pointer-events-auto">
       <motion.div 
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, delay: 1 }}
-        whileHover={{ scale: 1.05, rotate: -1 }}
-        className="relative flex items-center gap-4 px-4 py-3 md:px-5 md:py-4 rounded-xl border border-black/10 dark:border-white/10 bg-white/40 dark:bg-black/40 backdrop-blur-2xl shadow-2xl overflow-hidden group min-w-[180px] max-w-[calc(100vw-3rem)]"
+        transition={{ duration: 1, delay: 1, ease: [0.16, 1, 0.3, 1] }}
+        whileHover={{ scale: 0.8, rotate: -1 }}
+        className="relative flex items-center gap-4 px-2 py-2 overflow-hidden group min-w-[140px] scale-75 origin-bottom-right"
       >
         {/* Visual "Load" Bar */}
-        <div className="relative w-1.5 h-10 bg-black/5 dark:bg-white/5 rounded-full overflow-hidden">
+        <div className="relative w-1 h-8 bg-black/5 dark:bg-white/5 rounded-full overflow-hidden">
           <motion.div 
             animate={{ height: `${load}%` }}
             className="absolute bottom-0 left-0 w-full bg-black/40 dark:bg-white/40 shadow-[0_0_10px_rgba(255,255,255,0.3)]"
@@ -82,35 +82,32 @@ export default function TelemetryCapsule() {
         </div>
 
         {/* Data Grid */}
-        <div className="flex flex-col gap-1.5 flex-1">
+        <div className="flex flex-col gap-1 flex-1">
           <div className="flex justify-between items-center gap-3">
-            <span className="text-[8px] font-black text-zinc-900/50 dark:text-white/50 tracking-[0.2em] uppercase">SYS_LOAD</span>
-            <span className="text-[10px] font-mono text-[var(--text-primary)] font-bold">
+            <span className="text-[7px] font-black text-zinc-900/40 dark:text-white/40 tracking-[0.2em] uppercase">SYS_LOAD</span>
+            <span className="text-[9px] font-mono text-[var(--text-primary)] font-bold">
               {load.toString().padStart(3, '0')}%
             </span>
           </div>
           
           <div className="flex justify-between items-center gap-3">
-            <span className="text-[8px] font-black text-zinc-900/50 dark:text-white/50 tracking-[0.2em] uppercase">MEM_MAP</span>
-            <span className="text-[10px] font-mono text-[var(--text-primary)] font-bold">
+            <span className="text-[7px] font-black text-zinc-900/40 dark:text-white/40 tracking-[0.2em] uppercase">MEM_MAP</span>
+            <span className="text-[9px] font-mono text-[var(--text-primary)] font-bold">
               {memory}MB
             </span>
           </div>
 
-          <div className="flex justify-between items-center gap-3 border-t border-black/5 dark:border-white/5 pt-1.5 mt-0.5">
-            <span className="text-[8px] font-black text-zinc-900/50 dark:text-white/50 tracking-[0.2em] uppercase">UPTIME</span>
-            <span className="text-[10px] font-mono text-[var(--text-primary)] font-bold">
+          <div className="flex justify-between items-center gap-3 border-t border-black/5 dark:border-white/5 pt-1 mt-0.5">
+            <span className="text-[7px] font-black text-zinc-900/40 dark:text-white/40 tracking-[0.2em] uppercase">UPTIME</span>
+            <span className="text-[9px] font-mono text-[var(--text-primary)] font-bold">
               {formatTime(uptime)}
             </span>
           </div>
         </div>
 
-        {/* Decorative Corner Accents */}
-        <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-black/20 dark:border-white/20" />
-        <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-black/20 dark:border-white/20" />
-        
-        {/* Scanline Effect */}
-        <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.05)_50%),linear-gradient(90deg,rgba(255,0,0,0.01),rgba(0,255,0,0.01),rgba(0,0,255,0.01))] bg-[length:100%_2px,3px_100%] opacity-20" />
+        {/* Decorative Corner Accents - Minimal */}
+        <div className="absolute top-0 right-0 w-1.5 h-1.5 border-t border-r border-black/10 dark:border-white/10" />
+        <div className="absolute bottom-0 left-0 w-1.5 h-1.5 border-b border-l border-black/10 dark:border-white/10" />
       </motion.div>
     </div>
   );

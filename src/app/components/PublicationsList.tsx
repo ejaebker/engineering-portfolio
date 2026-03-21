@@ -20,51 +20,51 @@ interface Paper {
 export default function PublicationsList({ papers, isArchive = false }: { papers: Paper[]; isArchive?: boolean }) {
   if (isArchive) {
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 lg:gap-x-12">
       {papers.map((paper, index) => (
         <motion.div
           key={paper.paperId}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: index * 0.05 }}
-          className="group relative flex flex-col gap-4 py-10 border-b border-[var(--divider)]"
+          transition={{ duration: 0.8, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
+          className={`group relative flex flex-col gap-6 pt-12 border-t border-[var(--divider)] ${
+            index % 3 === 1 ? 'md:mt-12' : index % 3 === 2 ? 'md:mt-24' : ''
+          }`}
         >
-          {/* Index Number - Compact */}
-          <div className="absolute top-8 right-0 text-4xl font-black text-[var(--text-primary)] opacity-[0.05] group-hover:opacity-100 transition-all duration-700 leading-none pointer-events-none">
-            {String(index + 1).padStart(2, '0')}
+          {/* Index Number - Editorial Detail */}
+          <div className="absolute top-4 left-0 text-[10px] font-black text-[var(--text-muted)] tracking-widest opacity-40 group-hover:opacity-100 transition-opacity duration-700">
+            INDEX_{String(index + 1).padStart(3, '0')}
           </div>
 
-          <div className="space-y-4 pr-12">
-            <div className="flex items-center gap-4">
+          <div className="space-y-6">
+            <div className="space-y-3">
               <span className="text-[9px] font-black text-[var(--text-muted)] tracking-[0.4em] uppercase">
                 {paper.year || 'N/A'} {"//"} {paper.venue || 'RESEARCH_PREPRINT'}
               </span>
-            </div>
-
-            <div className="space-y-3">
-              <h3 className="text-xl md:text-2xl font-black text-[var(--text-primary)] leading-[1.1] uppercase group-hover:translate-x-2 transition-transform duration-500 tracking-tight line-clamp-2">
+              <h3 className="text-xl font-black text-[var(--text-primary)] leading-[1.2] uppercase tracking-tight group-hover:text-[var(--text-muted)] transition-colors duration-500 line-clamp-3">
                 {paper.title}
               </h3>
-              
-              <p className="text-sm text-[var(--text-secondary)] font-light italic line-clamp-2">
-                {paper.authors?.map(a => a.name).join(', ')}
-              </p>
             </div>
 
+            <p className="text-[11px] text-[var(--text-secondary)] font-light italic leading-relaxed">
+              {paper.authors?.map(a => a.name).join(', ')}
+            </p>
+
             {paper.externalIds?.DOI && (
-              <div className="pt-2">
+              <div className="pt-4 flex items-center justify-between">
                 <a 
                   href={`https://doi.org/${paper.externalIds.DOI}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 text-[9px] font-black text-[var(--text-muted)] hover:text-[var(--text-primary)] tracking-[0.3em] uppercase transition-all group/link"
+                  className="inline-flex items-center gap-3 text-[9px] font-black text-[var(--text-primary)] hover:text-[var(--text-muted)] tracking-[0.3em] uppercase transition-all"
                 >
-                  <span className="border-b border-transparent group-hover/link:border-[var(--text-primary)] transition-all pb-0.5">ACCESS_FILE</span>
-                  <svg className="w-3 h-3 transition-transform group-hover/link:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                  ACCESS_PAPER
+                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
                 </a>
+                <div className="w-8 h-px bg-[var(--divider)] group-hover:w-16 transition-all duration-700" />
               </div>
             )}
           </div>
@@ -83,7 +83,7 @@ export default function PublicationsList({ papers, isArchive = false }: { papers
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: index * 0.1 }}
+          transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="group relative grid md:grid-cols-[80px_1fr] gap-6 py-10 border-b border-[var(--divider)] last:border-0"
         >
           <div className="text-4xl md:text-5xl font-black text-[var(--text-primary)] opacity-10 group-hover:opacity-100 transition-opacity duration-700 leading-none">

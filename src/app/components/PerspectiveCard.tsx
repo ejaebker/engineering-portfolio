@@ -12,8 +12,9 @@ export default function PerspectiveCard({ children, className = "" }: { children
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
+  const springConfig = { damping: 20, stiffness: 200 };
+  const mouseXSpring = useSpring(x, springConfig);
+  const mouseYSpring = useSpring(y, springConfig);
 
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);

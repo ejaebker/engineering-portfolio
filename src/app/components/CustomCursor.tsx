@@ -8,19 +8,22 @@ export default function CustomCursor() {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
   
   // High-precision spring for a "surgical" feel
-  const springConfig = { damping: 30, stiffness: 500 };
+  const springConfig = { damping: 20, stiffness: 200 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     
     const handleMouseMove = (e: MouseEvent) => {
+      setIsVisible(true);
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
     };
@@ -37,14 +40,21 @@ export default function CustomCursor() {
       setIsHovering(!!isClickable);
     };
 
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
+
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseover', handleMouseOver);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
     
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, isVisible]);
 
   if (!mounted) return null;
 
@@ -65,7 +75,7 @@ export default function CustomCursor() {
         }}
         animate={{
           scale: isHovering ? 2.5 : 1,
-          opacity: isHovering ? 0.5 : 1,
+          opacity: isVisible ? (isHovering ? 0.5 : 1) : 0,
         }}
         transition={{
           scale: { type: "spring", stiffness: 300, damping: 20 },

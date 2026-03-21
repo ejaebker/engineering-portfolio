@@ -23,7 +23,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-3 rounded-full hover:bg-black/[0.05] dark:hover:bg-white/[0.05] transition-all duration-500 group/toggle"
+      className="p-3 rounded-full hover:bg-black/[0.05] dark:hover:bg-white/[0.05] transition-all duration-500 group/toggle outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
       aria-label="Toggle theme"
     >
       {resolvedTheme === 'dark' ? (

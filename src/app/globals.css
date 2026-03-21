@@ -6,31 +6,35 @@
   --color-zinc-700: #3f3f46;
   --color-zinc-800: #27272a;
   --color-zinc-900: #18181b;
+
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui;
+  --font-display: var(--font-syne), var(--font-space-grotesk);
 }
 
 :root {
-  --background: #f9f8ff;
-  --foreground: #1a1a1a;
-  --text-primary: #1a1a1a;
-  --text-secondary: #4b5563;
-  --text-muted: #9ca3af;
-  --divider: rgba(0, 0, 0, 0.08);
+  --background: #fdfdfc; /* Warm, off-white paper/titanium tone */
+  --foreground: #121212; /* Deep 'ink' black */
+  --text-primary: #121212;
+  --text-secondary: #3f3f46; /* Tinted neutral */
+  --text-muted: #71717a;    /* Tinted neutral */
+  --divider: rgba(18, 18, 18, 0.08);
   color-scheme: light dark;
 }
 
 .dark {
-  --background: #121212;
-  --foreground: #ffffff;
-  --text-primary: #ffffff;
-  --text-secondary: #ffffff;
-  --text-muted: #e5e7eb;
-  --divider: rgba(255, 255, 255, 0.15);
+  --background: #080808; /* Deeper, more 'brutalist' black */
+  --foreground: #fcfcfc;
+  --text-primary: #fcfcfc;
+  --text-secondary: #d4d4d8;
+  --text-muted: #a1a1aa;
+  --divider: rgba(252, 252, 252, 0.1);
 }
 
 html {
   background-color: var(--background) !important;
   color: var(--foreground) !important;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  scroll-behavior: smooth;
 }
 
 body {
@@ -38,8 +42,14 @@ body {
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   cursor: none;
+}
+
+/* Standardized Transitions for Interactive Elements */
+a, button, .transition-all {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition-duration: 600ms !important;
 }
 
 /* Hide default cursor on interactive elements */
@@ -53,16 +63,17 @@ a, button {
   background-image: url("https://grainy-gradients.vercel.app/noise.svg");
   pointer-events: none;
   z-index: -1;
+  mix-blend-mode: overlay;
 }
 
 .dark .bg-noise {
-  filter: contrast(150%) brightness(1000%);
-  opacity: 0.03;
+  filter: contrast(120%) brightness(1000%);
+  opacity: 0.04;
 }
 
 html:not(.dark) .bg-noise {
-  filter: contrast(150%) brightness(0%);
-  opacity: 0.02;
+  filter: contrast(120%) brightness(0%);
+  opacity: 0.03;
 }
 
 /* Ultra-subtle Architectural Guide Lines */
@@ -77,14 +88,14 @@ html:not(.dark) .bg-noise {
 
 html:not(.dark) .bg-grid-lines {
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
 }
 
 .dark .bg-grid-lines {
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
 }
 
 /* Accessibility: Respect user preference for reduced motion */
@@ -106,6 +117,3 @@ html:not(.dark) .bg-grid-lines {
   outline-offset: 4px;
 }
 
-.dark :focus-visible {
-  outline: 2px solid #60a5fa;
-}

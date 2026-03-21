@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
+import DodecahedronLogo from './DodecahedronLogo';
 
 export default function Navbar() {
   return (
@@ -15,12 +16,9 @@ export default function Navbar() {
       >
         {/* Brand/Logo - Editorial & Minimal */}
         <div className="flex items-center gap-6 group">
-          <div className="relative w-10 h-10 flex items-center justify-center">
-            <div className="absolute inset-0 border border-[var(--divider)] rounded-full transition-all duration-700 group-hover:scale-110 group-hover:border-zinc-900/40 dark:group-hover:border-white/50" />
-            <div className="w-1 h-1 bg-[var(--text-primary)] rounded-full transition-all duration-700 group-hover:scale-[2]" />
-          </div>
+          <DodecahedronLogo />
           <a href="#home" className="text-[11px] font-black tracking-[0.6em] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors duration-500 uppercase">
-            ERIC JAEBKER
+            E.J
           </a>
         </div>
 
@@ -60,7 +58,7 @@ function NavLink({ href, label, icon }: { href: string; label: string; icon?: Re
     mouseY.set(0);
   };
 
-  const springConfig = { damping: 15, stiffness: 150 };
+  const springConfig = { damping: 20, stiffness: 200 };
   const x = useSpring(mouseX, springConfig);
   const y = useSpring(mouseY, springConfig);
 
@@ -69,7 +67,7 @@ function NavLink({ href, label, icon }: { href: string; label: string; icon?: Re
       href={href.startsWith('#') ? `/${href}` : href} 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative px-6 py-2 text-[10px] font-black tracking-[0.4em] text-zinc-900/40 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors duration-500 rounded-full flex items-center justify-center group/nav"
+      className="relative px-6 py-2 text-[10px] font-black tracking-[0.4em] text-zinc-900/40 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors duration-500 rounded-full flex items-center justify-center group/nav outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
     >
       <motion.span style={{ x, y }} className="relative z-10 flex items-center justify-center">
         {icon || label}

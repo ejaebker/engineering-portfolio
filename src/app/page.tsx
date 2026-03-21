@@ -26,7 +26,7 @@ export default function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, ease: "easeOut" }}
               >
-                <h1 className="text-[clamp(3rem,15vw,11rem)] font-black tracking-tighter mb-8 md:mb-12 leading-[0.8] text-[var(--text-primary)] drop-shadow-sm uppercase">
+                <h1 className="text-[clamp(3rem,15vw,11rem)] font-extrabold font-display tracking-tighter mb-8 md:mb-12 leading-[0.8] text-[var(--text-primary)] drop-shadow-sm uppercase">
                   ERIC
                   <br />
                   JAEBKER
@@ -49,15 +49,17 @@ export default function Home() {
                     className="relative group py-2"
                   >
                     <span className="text-[10px] md:text-[11px] font-black tracking-[0.4em] text-[var(--text-primary)] transition-colors duration-500 uppercase">LINKEDIN</span>
-                    <div className="absolute bottom-0 left-0 w-full h-px bg-[var(--divider)] scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+                    <div className="absolute bottom-0 left-0 w-full h-px bg-[var(--text-primary)] scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
                   </a>
                   
                   <a
                     href="/WINTER 2026 resume.pdf"
-                    className="group relative flex items-center gap-6 px-8 md:px-10 py-4 md:py-5 rounded-full border border-[var(--divider)] bg-black/[0.02] dark:bg-white/[0.02] hover:bg-[var(--text-primary)] hover:text-[var(--background)] transition-all duration-700"
+                    className="group relative flex items-center gap-6 px-10 py-5 bg-transparent border-x border-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--background)] transition-all duration-500"
                   >
-                    <span className="text-[10px] md:text-[11px] font-black tracking-[0.4em] uppercase">GET RESUME</span>
-                    <svg className="w-4 h-4 transition-transform duration-700 group-hover:translate-x-1 text-[var(--text-muted)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <div className="absolute top-0 left-0 w-4 h-px bg-[var(--text-primary)] group-hover:bg-transparent" />
+                    <div className="absolute bottom-0 right-0 w-4 h-px bg-[var(--text-primary)] group-hover:bg-transparent" />
+                    <span className="text-[10px] md:text-[11px] font-bold tracking-[0.4em] uppercase">GET RESUME</span>
+                    <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                   </a>
@@ -68,7 +70,7 @@ export default function Home() {
             {/* Right: Profile Picture */}
             <div className="relative flex justify-center md:justify-end overflow-visible mt-12 md:mt-0">
               <PerspectiveCard className="relative w-64 h-[450px] md:w-full md:h-[650px]">
-                <div className="relative w-full h-full overflow-hidden rounded-[4rem] border border-white/5 bg-zinc-950 group shadow-2xl">
+                <div className="relative w-full h-full overflow-hidden rounded-[4rem] border border-[var(--divider)] bg-zinc-950 group shadow-2xl">
                   <Image
                     src="/IMG_0741.jpg"
                     alt="Eric Jaebker"
@@ -77,13 +79,13 @@ export default function Home() {
                     priority
                   />
                   
-                  <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent opacity-40 pointer-events-none z-20" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent opacity-40 pointer-events-none z-20" />
                 </div>
               </PerspectiveCard>
               
-              {/* Subtle Monochrome Glows */}
-              <div className="absolute -top-10 -right-10 md:-top-20 md:-right-20 w-48 h-48 md:w-64 md:h-64 bg-white/5 blur-[80px] md:blur-[120px] rounded-full pointer-events-none" />
-              <div className="absolute -bottom-10 -left-10 md:-bottom-20 md:-left-20 w-56 h-56 md:w-80 md:h-80 bg-white/[0.03] blur-[100px] md:blur-[140px] rounded-full pointer-events-none" />
+              {/* Subtle Monochrome Glows - Architectural Position */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--text-primary)]/5 blur-[120px] rounded-full pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-80 h-80 bg-[var(--text-primary)]/[0.03] blur-[140px] rounded-full pointer-events-none" />
             </div>
           </div>
         </AnimatedSection>
@@ -115,20 +117,28 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Technical Stats / Skills Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 pt-12 md:pt-16 border-t border-[var(--divider)]">
-                <div className="space-y-3">
+              {/* Technical Stats / Skills Grid - Editorial Layout */}
+              <div className="flex flex-col md:flex-row gap-12 md:gap-20 pt-16 md:pt-24 border-t border-[var(--divider)] relative">
+                <div className="space-y-4 md:w-1/3">
                   <div className="text-[9px] font-black text-[var(--text-muted)] tracking-[0.4em] uppercase">FOCUS_01</div>
-                  <div className="text-base font-bold text-[var(--text-primary)] tracking-tight uppercase">Embedded Systems</div>
+                  <div className="text-xl font-bold text-[var(--text-primary)] tracking-tighter uppercase leading-none">Embedded<br />Systems</div>
+                  <div className="h-px w-8 bg-[var(--divider)] mt-6" />
                 </div>
-                <div className="space-y-3">
+                
+                <div className="space-y-4 md:w-1/3">
                   <div className="text-[9px] font-black text-[var(--text-muted)] tracking-[0.4em] uppercase">FOCUS_02</div>
-                  <div className="text-base font-bold text-[var(--text-primary)] tracking-tight uppercase">Machine Learning</div>
+                  <div className="text-xl font-bold text-[var(--text-primary)] tracking-tighter uppercase leading-none">Machine<br />Learning</div>
+                  <div className="h-px w-8 bg-[var(--divider)] mt-6" />
                 </div>
-                <div className="space-y-3">
+
+                <div className="space-y-4 md:w-1/3">
                   <div className="text-[9px] font-black text-[var(--text-muted)] tracking-[0.4em] uppercase">FOCUS_03</div>
-                  <div className="text-base font-bold text-[var(--text-primary)] tracking-tight uppercase">Signal Processing</div>
+                  <div className="text-xl font-bold text-[var(--text-primary)] tracking-tighter uppercase leading-none">Signal<br />Processing</div>
+                  <div className="h-px w-8 bg-[var(--divider)] mt-6" />
                 </div>
+
+                {/* Vertical Decor Line */}
+                <div className="hidden md:block absolute -right-8 top-0 h-full w-px bg-linear-to-b from-[var(--divider)] to-transparent" />
               </div>
             </div>
           </div>
@@ -180,10 +190,12 @@ export default function Home() {
             <div className="flex flex-wrap gap-8 items-center">
               <a
                 href="mailto:ejaebker@purdue.edu"
-                className="group relative flex items-center gap-6 px-12 py-6 rounded-full bg-zinc-900 dark:bg-[var(--text-primary)] text-white dark:text-[var(--background)] transition-all duration-700 hover:scale-105"
+                className="group relative flex items-center gap-6 px-12 py-6 bg-zinc-900 dark:bg-[var(--text-primary)] text-white dark:text-[var(--background)] transition-all duration-500 hover:scale-105"
               >
+                <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-white/20 dark:border-black/20" />
+                <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-white/20 dark:border-black/20" />
                 <span className="text-[11px] font-black tracking-[0.4em] uppercase">EMAIL ME</span>
-                <svg className="w-4 h-4 transition-transform duration-700 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </a>
@@ -194,7 +206,7 @@ export default function Home() {
                 className="group relative py-2"
               >
                 <span className="text-[10px] md:text-[11px] font-black tracking-[0.4em] text-[var(--text-muted)] group-hover:text-[var(--text-primary)] transition-colors duration-500 uppercase">LINKEDIN</span>
-                <div className="absolute bottom-0 left-0 w-full h-px bg-black/20 dark:bg-white/40 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+                <div className="absolute bottom-0 left-0 w-full h-px bg-[var(--text-primary)]/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
               </a>
             </div>
           </div>
