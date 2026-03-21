@@ -15,10 +15,13 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Engineering Portfolio",
-  description: "Neon-themed engineering portfolio with projects and publications.",
+  description: "Sophisticated engineering portfolio with research and project index.",
 };
 
 import CustomCursor from './components/CustomCursor';
+import FluidBackground from './components/FluidBackground';
+import TelemetryCapsule from './components/TelemetryCapsule';
+import SchematicBackground from './components/SchematicBackground';
 
 export default function RootLayout({
   children,
@@ -30,10 +33,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <CustomCursor />
-        <div className="bg-grid-lines" />
-        <div className="noise" />
-        <Providers>{children}</Providers>
+        <Providers>
+          <CustomCursor />
+          <FluidBackground />
+          <SchematicBackground />
+          <TelemetryCapsule />
+          <div className="bg-grid-lines" />
+          {children}
+        </Providers>
       </body>
     </html>
   );

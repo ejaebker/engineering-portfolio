@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 interface Author {
   name: string;
@@ -17,89 +17,107 @@ interface Paper {
   };
 }
 
-export default function PublicationsList({ papers }: { papers: Paper[] }) {
-  const container: Variants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const item: Variants = {
-    hidden: { opacity: 0, x: -20 },
-    show: { 
-      opacity: 1, 
-      x: 0, 
-      transition: { 
-        duration: 0.8, 
-        ease: "easeOut" 
-      } 
-    }
-  };
-
-  return (
-    <motion.div 
-      variants={container}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true }}
-      className="space-y-8"
-    >
-      {papers.map((paper: Paper, index: number) => (
-        <motion.div 
-          key={paper.paperId} 
-          variants={item}
-          className="group relative bg-white/[0.01] border border-white/[0.05] rounded-3xl p-8 transition-all duration-500 hover:bg-white/[0.03] hover:border-white/20 overflow-hidden"
+export default function PublicationsList({ papers, isArchive = false }: { papers: Paper[]; isArchive?: boolean }) {
+  if (isArchive) {
+    return (
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-4">
+      {papers.map((paper, index) => (
+        <motion.div
+          key={paper.paperId}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.05 }}
+          className="group relative flex flex-col gap-4 py-10 border-b border-[var(--divider)]"
         >
-          {/* Large Editorial Number */}
-          <div className="absolute -top-4 -right-2 text-[clamp(4rem,10vw,8rem)] font-black text-white/[0.03] pointer-events-none select-none tracking-tighter">
-            {String(papers.length - index).padStart(2, '0')}
+          {/* Index Number - Compact */}
+          <div className="absolute top-8 right-0 text-4xl font-black text-[var(--text-primary)] opacity-[0.05] group-hover:opacity-100 transition-all duration-700 leading-none pointer-events-none">
+            {String(index + 1).padStart(2, '0')}
           </div>
-          
-          <div className="relative z-10">
-            <div className="flex items-center gap-6 mb-6">
-              <span className="text-[10px] text-white/40 font-black tracking-[0.5em] uppercase">
-                {paper.year ?? 'N/A'} — {paper.venue || "UNPUBLISHED"}
+
+          <div className="space-y-4 pr-12">
+            <div className="flex items-center gap-4">
+              <span className="text-[9px] font-black text-[var(--text-muted)] tracking-[0.4em] uppercase">
+                {paper.year || 'N/A'} {"//"} {paper.venue || 'RESEARCH_PREPRINT'}
               </span>
-              <div className="h-px flex-1 bg-white/5" />
             </div>
-            
-            <h3 className="text-2xl md:text-3xl font-bold group-hover:text-white transition-colors duration-500 leading-tight mb-6 max-w-2xl uppercase tracking-tight">
-              {paper.title}
-            </h3>
-            
-            {paper.authors && paper.authors.length > 0 && (
-              <p className="text-base text-zinc-500 mb-10 font-light italic">
-                {paper.authors.slice(0, 3).map((a) => a.name).join(', ')}
-                {paper.authors.length > 3 ? ' et al.' : ''}
+
+            <div className="space-y-3">
+              <h3 className="text-xl md:text-2xl font-black text-[var(--text-primary)] leading-[1.1] uppercase group-hover:translate-x-2 transition-transform duration-500 tracking-tight line-clamp-2">
+                {paper.title}
+              </h3>
+              
+              <p className="text-sm text-[var(--text-secondary)] font-light italic line-clamp-2">
+                {paper.authors?.map(a => a.name).join(', ')}
               </p>
-            )}
-            
-            <div className="pt-6 border-t border-white/[0.05]">
-              {paper.externalIds?.DOI ? (
+            </div>
+
+            {paper.externalIds?.DOI && (
+              <div className="pt-2">
                 <a 
                   href={`https://doi.org/${paper.externalIds.DOI}`}
-                  className="inline-flex items-center gap-4 text-[11px] text-white/30 hover:text-white font-black uppercase tracking-[0.4em] transition-all group/link"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 text-[9px] font-black text-[var(--text-muted)] hover:text-[var(--text-primary)] tracking-[0.3em] uppercase transition-all group/link"
                 >
-                  VIEW PUBLICATION
-                  <svg className="w-4 h-4 transition-transform duration-500 group-hover/link:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <span className="border-b border-transparent group-hover/link:border-[var(--text-primary)] transition-all pb-0.5">ACCESS_FILE</span>
+                  <svg className="w-3 h-3 transition-transform group-hover/link:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
                 </a>
-              ) : (
-                <span className="text-[11px] text-white/10 font-black uppercase tracking-[0.4em]">
-                  DOCUMENT PENDING
-                </span>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </motion.div>
       ))}
-    </motion.div>
+    </div>
+    );
+  }
+
+  // Home Page List View
+  return (
+    <div className="space-y-8">
+      {papers.map((paper, index) => (
+        <motion.div
+          key={paper.paperId}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1 }}
+          className="group relative grid md:grid-cols-[80px_1fr] gap-6 py-10 border-b border-[var(--divider)] last:border-0"
+        >
+          <div className="text-4xl md:text-5xl font-black text-[var(--text-primary)] opacity-10 group-hover:opacity-100 transition-opacity duration-700 leading-none">
+            {String(index + 1).padStart(2, '0')}
+          </div>
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <span className="text-[10px] font-black text-[var(--text-muted)] tracking-widest uppercase">
+                {paper.year || 'N/A'} {"//"} {paper.venue || 'PREPRINT'}
+              </span>
+            </div>
+            <h3 className="text-xl md:text-3xl font-bold text-[var(--text-primary)] leading-tight uppercase group-hover:translate-x-2 transition-transform duration-500 line-clamp-2">
+              {paper.title}
+            </h3>
+            <p className="text-sm md:text-base text-[var(--text-secondary)] font-light italic">
+              {paper.authors?.slice(0, 3).map(a => a.name).join(', ')}
+              {paper.authors && paper.authors.length > 3 ? ' et al.' : ''}
+            </p>
+            {paper.externalIds?.DOI && (
+              <a 
+                href={`https://doi.org/${paper.externalIds.DOI}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 text-[10px] font-black text-[var(--text-muted)] hover:text-[var(--text-primary)] tracking-[0.3em] uppercase transition-colors pt-2"
+              >
+                ACCESS_FULL_TEXT
+                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                  <path d="M7 17L17 7M17 7H7M17 7V17" />
+                </svg>
+              </a>
+            )}
+          </div>
+        </motion.div>
+      ))}
+    </div>
   );
 }

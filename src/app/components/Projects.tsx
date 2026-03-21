@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import PerspectiveCard from './PerspectiveCard';
 
 export default function Projects() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -87,41 +89,38 @@ export default function Projects() {
               opacity: { duration: 0.4 },
               scale: { duration: 0.4 }
             }}
-            className="w-full"
+            className="w-full h-full"
           >
-            <div className="rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border border-white/[0.08] bg-white/[0.01] p-6 md:p-12 backdrop-blur-3xl shadow-[0_24px_80px_rgba(0,0,0,0.4)]">
+            <PerspectiveCard className="rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border border-[var(--divider)] bg-black/[0.01] dark:bg-white/[0.01] p-6 md:p-12 backdrop-blur-3xl shadow-[0_24px_80px_rgba(0,0,0,0.4)]">
               <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 {/* Image Section - Left */}
                 <div className="relative group perspective-1000">
-                  <div className="absolute -inset-4 bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-1000" />
-                  <div className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] border border-white/10 shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]">
-                    <img
+                  <div className="absolute -inset-4 bg-black/5 dark:bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-1000" />
+                  <div className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] border border-[var(--divider)] shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] w-full h-64 md:h-80">
+                    <Image
                       src={currentProject.image}
                       alt={currentProject.title}
-                      className="w-full h-64 md:h-80 object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-1000"
-                      onError={(e) => {
-                        e.currentTarget.src = "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80"; // Abstract technical fallback
-                        e.currentTarget.className = "w-full h-64 md:h-80 object-cover opacity-20 grayscale";
-                      }}
+                      fill
+                      className="object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-1000"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-60 dark:opacity-60" />
                   </div>
                   {/* Architectural Corner Accent */}
-                  <div className="absolute -top-2 -left-2 w-6 h-6 md:w-8 md:h-8 border-t-2 border-l-2 border-white/20 rounded-tl-lg md:rounded-tl-xl pointer-events-none" />
+                  <div className="absolute -top-2 -left-2 w-6 h-6 md:w-8 md:h-8 border-t-2 border-l-2 border-[var(--divider)] rounded-tl-lg md:rounded-tl-xl pointer-events-none" />
                 </div>
 
                 {/* Content Section - Right */}
                 <div className="flex flex-col gap-6 md:gap-8">
                   <div>
                     <div className="flex items-center gap-4 mb-4 md:mb-6">
-                      <span className="text-[9px] md:text-[10px] text-white/40 font-black tracking-[0.4em] uppercase">
+                      <span className="text-[9px] md:text-[10px] text-zinc-900/40 dark:text-white/80 font-black tracking-[0.4em] uppercase">
                         EST. {currentProject.year}
                       </span>
                     </div>
-                    <h3 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-none mb-4 md:mb-6 uppercase">
+                    <h3 className="text-3xl md:text-5xl font-black text-[var(--text-primary)] tracking-tighter leading-none mb-4 md:mb-6 uppercase line-clamp-2">
                       {currentProject.title}
                     </h3>
-                    <p className="text-base md:text-lg text-zinc-400 leading-relaxed font-light">
+                    <p className="text-base md:text-lg text-[var(--text-secondary)] leading-relaxed font-light line-clamp-4">
                       {currentProject.description}
                     </p>
                   </div>
@@ -131,7 +130,7 @@ export default function Projects() {
                     {currentProject.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="text-[8px] md:text-[9px] font-black tracking-[0.2em] bg-white/[0.03] text-white/60 px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-white/[0.05] hover:border-white/20 hover:text-white transition-all duration-500 uppercase"
+                        className="text-[8px] md:text-[9px] font-black tracking-[0.2em] bg-black/[0.03] dark:bg-white/[0.05] text-[var(--text-muted)] px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-[var(--divider)] hover:border-black/30 dark:hover:border-white/50 hover:text-black dark:hover:text-white transition-all duration-500 uppercase"
                       >
                         {tech}
                       </span>
@@ -144,29 +143,29 @@ export default function Projects() {
                       href={currentProject.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group relative flex items-center justify-center px-8 md:px-10 py-3.5 md:py-4 rounded-full bg-white text-black transition-all duration-700 hover:scale-105"
+                      className="group relative flex items-center justify-center px-8 md:px-10 py-3.5 md:py-4 rounded-full bg-zinc-900 dark:bg-[var(--text-primary)] text-white dark:text-[var(--background)] transition-all duration-700 hover:scale-105"
                     >
                       <span className="text-[10px] md:text-[11px] font-black tracking-[0.3em] uppercase">VIEW SOURCE</span>
                     </a>
                     <Link
                       href={`/projects/${currentProject.id}`}
-                      className="group flex items-center justify-center px-8 md:px-10 py-3.5 md:py-4 rounded-full border border-white/10 text-white/80 transition-all duration-700 hover:bg-white/5 hover:border-white"
+                      className="group flex items-center justify-center px-8 md:px-10 py-3.5 md:py-4 rounded-full border border-[var(--divider)] bg-black/[0.02] dark:bg-white/[0.02] text-[var(--text-primary)] transition-all duration-700 hover:bg-black/5 dark:hover:bg-white/10 hover:border-black/50 dark:hover:border-white/80"
                     >
                       <span className="text-[10px] md:text-[11px] font-black tracking-[0.3em] uppercase">DETAILS</span>
                     </Link>
                   </div>
                 </div>
               </div>
-            </div>
+            </PerspectiveCard>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Navigation Controls */}
-      <div className="flex items-center justify-between px-2">
+      {/* Navigation Controls - Centered */}
+      <div className="flex items-center justify-center gap-12 px-2">
         <button
           onClick={handlePrev}
-          className="p-4 rounded-full border border-white/5 text-white/40 hover:text-white hover:border-white/20 transition-all duration-300"
+          className="p-4 rounded-full border border-[var(--divider)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-black/20 dark:hover:border-white/40 transition-all duration-300"
           aria-label="Previous project"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -180,7 +179,7 @@ export default function Projects() {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`h-1 transition-all duration-700 rounded-full ${
-                index === currentIndex ? 'w-12 bg-white/40' : 'w-4 bg-white/10'
+                index === currentIndex ? 'w-12 bg-black/60 dark:bg-white/90' : 'w-4 bg-[var(--divider)]'
               }`}
             />
           ))}
@@ -188,7 +187,7 @@ export default function Projects() {
 
         <button
           onClick={handleNext}
-          className="p-4 rounded-full border border-white/5 text-white/40 hover:text-white hover:border-white/20 transition-all duration-300"
+          className="p-4 rounded-full border border-[var(--divider)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-black/20 dark:hover:border-white/40 transition-all duration-300"
           aria-label="Next project"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

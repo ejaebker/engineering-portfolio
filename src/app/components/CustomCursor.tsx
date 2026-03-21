@@ -2,78 +2,76 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { useTheme } from 'next-themes';
 
 export default function CustomCursor() {
+  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
   
-  const springConfig = { damping: 30, stiffness: 800 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
+  
+  // High-precision spring for a "surgical" feel
+  const springConfig = { damping: 30, stiffness: 500 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
     setMounted(true);
-    const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
     };
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (
+      const isClickable = 
         target.tagName === 'A' || 
         target.tagName === 'BUTTON' || 
         target.closest('a') || 
         target.closest('button') ||
-        target.classList.contains('cursor-pointer')
-      ) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
+        window.getComputedStyle(target).cursor === 'pointer';
+      
+      setIsHovering(!!isClickable);
     };
 
-    window.addEventListener('mousemove', moveCursor);
+    window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseover', handleMouseOver);
+    
     return () => {
-      window.removeEventListener('mousemove', moveCursor);
+      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, [cursorX, cursorY]);
+  }, [mouseX, mouseY]);
 
   if (!mounted) return null;
 
+  const isDark = resolvedTheme === 'dark';
+
   return (
-    <>
+    <div className="fixed inset-0 pointer-events-none z-[9999] hidden md:block">
+      {/* Precision Surgical Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-12 h-12 border border-white/20 rounded-full pointer-events-none z-[9999] hidden md:block"
-        animate={{
-          scale: isHovering ? 1.5 : 1,
-          backgroundColor: isHovering ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0)",
-          borderColor: isHovering ? "rgba(255, 255, 255, 0.4)" : "rgba(255, 255, 255, 0.2)",
-        }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className={`absolute w-1.5 h-1.5 rounded-full ${
+          isDark ? 'bg-white' : 'bg-black'
+        }`}
         style={{
-          translateX: cursorXSpring,
-          translateY: cursorYSpring,
-          x: "-50%",
-          y: "-50%",
+          x: smoothX,
+          y: smoothY,
+          translateX: '-50%',
+          translateY: '-50%',
+        }}
+        animate={{
+          scale: isHovering ? 2.5 : 1,
+          opacity: isHovering ? 0.5 : 1,
+        }}
+        transition={{
+          scale: { type: "spring", stiffness: 300, damping: 20 },
+          opacity: { duration: 0.2 }
         }}
       />
-      <motion.div
-        className="fixed top-0 left-0 w-1 h-1 bg-white rounded-full pointer-events-none z-[9999] hidden md:block"
-        animate={{
-          scale: isHovering ? 0 : 1,
-        }}
-        style={{
-          translateX: cursorX,
-          translateY: cursorY,
-          x: "-50%",
-          y: "-50%",
-        }}
-      />
-    </>
+    </div>
   );
 }

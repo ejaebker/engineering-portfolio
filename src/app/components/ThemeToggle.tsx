@@ -4,10 +4,11 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
 export default function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -15,15 +16,19 @@ export default function ThemeToggle() {
     return <div className="fixed top-6 right-6 z-50 w-10 h-10" />;
   }
 
+  const toggleTheme = () => {
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
+  };
+
   return (
     <button
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="p-3 rounded-full hover:bg-white/[0.05] transition-all duration-500 group/toggle"
+      onClick={toggleTheme}
+      className="p-3 rounded-full hover:bg-black/[0.05] dark:hover:bg-white/[0.05] transition-all duration-500 group/toggle"
       aria-label="Toggle theme"
     >
-      {theme === 'dark' ? (
+      {resolvedTheme === 'dark' ? (
         <svg
-          className="w-4 h-4 text-white/40 group-hover/toggle:text-white transition-colors"
+          className="w-4 h-4 text-zinc-900/40 dark:text-white/60 group-hover/toggle:text-black dark:group-hover/toggle:text-white transition-colors"
           fill="none"
           stroke="currentColor"
           strokeWidth="2.5"
@@ -33,7 +38,7 @@ export default function ThemeToggle() {
         </svg>
       ) : (
         <svg
-          className="w-4 h-4 text-black/40 group-hover/toggle:text-black transition-colors"
+          className="w-4 h-4 text-zinc-900/40 dark:text-white/60 group-hover/toggle:text-black dark:group-hover/toggle:text-white transition-colors"
           fill="none"
           stroke="currentColor"
           strokeWidth="2.5"
