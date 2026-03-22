@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Eric Jaebker | Engineering Portfolio",
     description: "Architecting intelligent systems through a blend of rigorous research and high-performance software engineering.",
-    url: "https://ericjaebker.com",
+    url: "https://jebkr.dev",
     siteName: "Eric Jaebker Portfolio",
     images: [
       {
