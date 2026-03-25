@@ -13,30 +13,12 @@ const Projects = memo(function Projects() {
   const projects = useMemo(() => [
     {
       id: 1,
-      title: "Edge Compute Optimization",
-      description: "Low-latency machine learning inference on resource-constrained embedded hardware. Focused on reducing power consumption while maintaining high accuracy.",
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=800&fit=crop",
-      technologies: ["C++", "TensorFlow Lite", "ARM Cortex"],
-      link: "https://github.com",
-      year: 2024,
-    },
-    {
-      id: 2,
-      title: "Autonomous Signal Processing",
-      description: "Real-time noise cancellation and signal enhancement for industrial sensor networks using adaptive filtering techniques.",
-      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&h=800&fit=crop",
-      technologies: ["Python", "FPGA", "Signal Processing"],
-      link: "https://github.com",
-      year: 2024,
-    },
-    {
-      id: 3,
-      title: "Neural Network Architecture",
-      description: "Research into sparse neural networks and weight pruning to optimize deep learning models for mobile and edge deployment.",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=800&fit=crop",
-      technologies: ["PyTorch", "Python", "CUDA"],
-      link: "https://github.com",
-      year: 2023,
+      title: "Engineering Portfolio",
+      description: "An expressive editorial portfolio designed with sophisticated typography and organic motion. Built using Next.js 15 and TypeScript, the project was developed in collaboration with Gemini CLI for a seamless user experience.",
+      image: "/portfolio.png",
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Gemini CLI"],
+      link: "https://github.com/ejaebker/engineering-portfolio",
+      year: 2026,
     },
   ], []);
 
@@ -192,42 +174,44 @@ const Projects = memo(function Projects() {
       </div>
 
       {/* Navigation Controls - Centered */}
-      <div className="flex items-center justify-center gap-12 px-2">
-        <button
-          onClick={handlePrev}
-          className="p-5 md:p-4 rounded-full border border-[var(--divider)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--text-primary)] transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-          aria-label="Previous project"
-        >
-          <svg className="w-6 h-6 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
+      {projects.length > 1 && (
+        <div className="flex items-center justify-center gap-12 px-2">
+          <button
+            onClick={handlePrev}
+            className="p-5 md:p-4 rounded-full border border-[var(--divider)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--text-primary)] transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+            aria-label="Previous project"
+          >
+            <svg className="w-6 h-6 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
 
-        <div className="flex gap-2 md:gap-4 items-center py-4">
-          {projects.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className="group relative flex items-center justify-center p-4"
-              aria-label={`Go to project ${index + 1}`}
-            >
-              <div className={`h-1.5 transition-all duration-700 rounded-full ${
-                index === currentIndex ? 'w-12 bg-[var(--text-primary)] opacity-60 dark:opacity-90' : 'w-4 bg-[var(--divider)] group-hover:bg-[var(--text-primary)] group-hover:opacity-30'
-              }`} />
-            </button>
-          ))}
+          <div className="flex gap-2 md:gap-4 items-center py-4">
+            {projects.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className="group relative flex items-center justify-center p-4"
+                aria-label={`Go to project ${index + 1}`}
+              >
+                <div className={`h-1.5 transition-all duration-700 rounded-full ${
+                  index === currentIndex ? 'w-12 bg-[var(--text-primary)] opacity-60 dark:opacity-90' : 'w-4 bg-[var(--divider)] group-hover:bg-[var(--text-primary)] group-hover:opacity-30'
+                }`} />
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={handleNext}
+            className="p-5 md:p-4 rounded-full border border-[var(--divider)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--text-primary)] transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+            aria-label="Next project"
+          >
+            <svg className="w-6 h-6 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
-
-        <button
-          onClick={handleNext}
-          className="p-5 md:p-4 rounded-full border border-[var(--divider)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--text-primary)] transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-          aria-label="Next project"
-        >
-          <svg className="w-6 h-6 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-      </div>
+      )}
     </div>
   );
 });

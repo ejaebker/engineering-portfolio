@@ -18,63 +18,21 @@ interface Project {
 const projects: Record<string, Project> = {
   '1': {
     id: 1,
-    title: "Edge Compute Optimization",
-    description: "Low-latency machine learning inference on resource-constrained embedded hardware. Focused on reducing power consumption while maintaining high accuracy.",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=800&fit=crop",
-    technologies: ["C++", "TensorFlow Lite", "ARM Cortex"],
-    link: "https://github.com",
-    year: 2024,
-    fullDescription: `
-      This project focused on the deployment of deep neural networks on microcontrollers with limited SRAM and processing power. 
-      Through advanced quantization techniques and layer fusion, I achieved a 4x reduction in model size with negligible accuracy loss.
-      
-      Key achievements include:
-      - Optimized inference engine for ARM Cortex-M4 processors.
-      - Implemented custom kernels for depthwise separable convolutions.
-      - Reduced average power consumption by 35% compared to baseline implementations.
-    `,
-    challenges: "The primary challenge was managing the extremely tight memory budget, requiring manual memory allocation and careful buffer reuse strategies.",
-    outcome: "Successfully deployed a real-time keyword spotting system running at 15fps on a 64MHz MCU.",
-  },
-  '2': {
-    id: 2,
-    title: "Autonomous Signal Processing",
-    description: "Real-time noise cancellation and signal enhancement for industrial sensor networks using adaptive filtering techniques.",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&h=800&fit=crop",
-    technologies: ["Python", "FPGA", "Signal Processing"],
-    link: "https://github.com",
-    year: 2024,
-    fullDescription: `
-      Developed a high-throughput signal processing pipeline for filtering high-frequency noise in industrial vibration sensors. 
-      The system utilizes a hybrid approach with adaptive filters running on FPGA for ultra-low latency.
-      
-      Key achievements include:
-      - Achieved 2ms end-to-end latency for signal reconstruction.
-      - Designed a parallelized LMS filtering architecture.
-      - Integrated seamlessly with existing SCADA monitoring systems.
-    `,
-    challenges: "Handling non-stationary noise environments required the development of a modified adaptive algorithm with faster convergence rates.",
-    outcome: "Reduced false alarm rates in machine health monitoring by 60%.",
-  },
-  '3': {
-    id: 3,
-    title: "Neural Network Architecture",
-    description: "Research into sparse neural networks and weight pruning to optimize deep learning models for mobile and edge deployment.",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=800&fit=crop",
-    technologies: ["PyTorch", "Python", "CUDA"],
-    link: "https://github.com",
-    year: 2023,
-    fullDescription: `
-      Investigated structured and unstructured pruning methods to create lightweight versions of state-of-the-art architectures. 
-      This research involved developing custom pruning schedules that adapt to the training dynamics.
-      
-      Key achievements include:
-      - Developed a novel pruning metric based on activation gradients.
-      - Reduced FLOPS by 50% while maintaining 98% of baseline Top-1 accuracy on ImageNet.
-      - Open-sourced a pruning library currently used by several research groups.
-    `,
-    challenges: "Balancing the trade-off between sparsity and hardware-friendly execution patterns was a continuous optimization task.",
-    outcome: "Published results in [Journal/Conference Name] and demonstrated real-world speedups on mobile GPUs.",
+    title: "Engineering Portfolio",
+    description: "An expressive editorial portfolio designed with sophisticated typography and organic motion. Built using Next.js 15, TypeScript, and Framer Motion for a seamless, high-performance user experience.",
+    image: "/portfolio.png",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js"],
+    link: "https://github.com/ejaebker/engineering-portfolio",
+    year: 2026,
+    fullDescription: `Built using Next.js 15, TypeScript, and Framer Motion, this portfolio serves as a technical demonstration of modern web standards and high-performance frontend architecture. The project was developed in collaboration with Gemini CLI, leveraging AI-driven orchestration to accelerate the transition from architectural concept to a polished, production-ready interface.
+
+Key technical features include:
+- AI-Augmented Workflow: Developed using Gemini CLI for rapid prototyping, strategic refactoring, and complex state management.
+- Custom Cursor System: Intelligent, reactive cursor that adapts to interactive elements.
+- Organic Motion Engine: Custom Framer Motion configurations for smooth, non-linear transitions.
+- Responsive Architecture: Fluid layouts that maintain typographic integrity across all device scales.`,
+    challenges: "The primary challenge was balancing complex visual effects and motion with high performance and accessibility standards. Utilizing Gemini CLI allowed for efficient experimentation with non-linear animations while ensuring that high-contrast typography remained performant across different devices.",
+    outcome: "Successfully created a unique, high-impact digital identity that reflects technical maturity and design-forward thinking, achieving high Lighthouse scores while maintaining a rich, immersive aesthetic.",
   },
 };
 
@@ -132,10 +90,10 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
               </span>
               <div className="h-px w-24 bg-[var(--divider)]" />
             </div>
-            <h1 className="text-5xl md:text-[clamp(4rem,10vw,9rem)] font-black text-[var(--text-primary)] tracking-tighter leading-[0.8] uppercase max-w-4xl mb-8">
+            <h1 className="text-5xl md:text-[clamp(4rem,10vw,9rem)] font-black text-[var(--text-primary)] tracking-tighter leading-[0.9] uppercase max-w-4xl mb-12">
               {project.title}
             </h1>
-            <p className="text-xl md:text-3xl text-[var(--text-secondary)] font-light leading-tight max-w-2xl">
+            <p className="text-xl md:text-3xl text-[var(--text-secondary)] font-light leading-relaxed max-w-2xl">
               {project.description}
             </p>
           </div>
@@ -179,11 +137,11 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60 dark:opacity-40" />
             
             {/* Visual Callout Overlay */}
-            <div className="absolute bottom-12 right-12 md:bottom-20 md:right-20 text-right">
-              <div className="text-[clamp(2rem,5vw,4rem)] font-black text-white leading-none uppercase tracking-tighter opacity-40 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-1000 translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform">
+            <div className="absolute bottom-12 right-12 md:bottom-16 md:right-16 text-right">
+              <div className="text-[clamp(1rem,3vw,2rem)] font-black text-white leading-none uppercase tracking-tighter opacity-20 md:opacity-0 md:group-hover:opacity-60 transition-opacity duration-1000 translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform">
                 VISUAL_SIG
               </div>
-              <div className="text-[10px] font-mono text-white/40 tracking-[0.4em] uppercase">REF_ID // {project.id.toString().padStart(4, '0')}</div>
+              <div className="text-[8px] font-mono text-white/30 tracking-[0.4em] uppercase">REF_ID // {project.id.toString().padStart(4, '0')}</div>
             </div>
           </div>
         </div>
@@ -226,7 +184,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
           <div className="space-y-24">
             <div className="space-y-8 p-12 md:p-20 rounded-[3rem] md:rounded-[4rem] bg-[var(--background)] border border-[var(--divider)] relative overflow-hidden group">
               <h2 className="type-meta !text-[var(--text-primary)] relative z-10">02 {"//"} THE_APPROACH</h2>
-              <div className="text-xl md:text-3xl text-[var(--text-secondary)] leading-tight font-light whitespace-pre-line relative z-10">
+              <div className="text-xl md:text-3xl text-[var(--text-secondary)] leading-snug font-light whitespace-pre-line relative z-10">
                 {project.fullDescription}
               </div>
             </div>
