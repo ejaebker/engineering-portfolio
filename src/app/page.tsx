@@ -291,9 +291,13 @@ export default function Home() {
               Always open to research collaborations, technical discussions, or exploring new frontiers in engineering.
             </p>
             <div className="flex flex-wrap gap-8 items-center">
-              <a
-                href="mailto:ejaebker@purdue.edu"
-                className="group relative flex items-center gap-6 px-10 py-5 bg-transparent border-x border-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--background)] transition-all duration-500"
+              <button
+                onClick={() => {
+                  const user = "ejaebker";
+                  const domain = "purdue.edu";
+                  window.location.href = `mailto:${user}@${domain}`;
+                }}
+                className="group relative flex items-center gap-6 px-10 py-5 bg-transparent border-x border-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--background)] transition-all duration-500 cursor-pointer"
               >
                 <div className="absolute top-0 left-0 w-4 h-px bg-[var(--text-primary)] group-hover:bg-transparent" />
                 <div className="absolute bottom-0 right-0 w-3 h-px bg-[var(--text-primary)] group-hover:bg-transparent" />
@@ -301,7 +305,7 @@ export default function Home() {
                 <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
-              </a>
+              </button>
               <a
                 href="https://linkedin.com"
                 target="_blank"
