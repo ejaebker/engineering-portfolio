@@ -18,12 +18,12 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "Eric Jaebker | Engineering Portfolio",
-  description: "Sophisticated engineering portfolio of Eric Jaebker, focusing on intelligent systems, embedded hardware, and high-performance computing.",
-  keywords: ["Electrical Engineering", "Machine Learning", "Embedded Systems", "Signal Processing", "Purdue University"],
+  description: "Sophisticated engineering portfolio of Eric Jaebker, specializing in power electronics, control systems, and high-performance hardware architecture.",
+  keywords: ["Power Electronics", "Electrical Engineering", "Control Systems", "Renewable Energy", "Purdue University"],
   authors: [{ name: "Eric Jaebker" }],
   openGraph: {
     title: "Eric Jaebker | Engineering Portfolio",
-    description: "Architecting intelligent systems through a blend of rigorous research and high-performance software engineering.",
+    description: "Specializing in power electronics and high-performance hardware through rigorous research and architectural optimization.",
     url: "https://jebkr.dev",
     siteName: "Eric Jaebker Portfolio",
     images: [
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Eric Jaebker | Engineering Portfolio",
-    description: "Architecting intelligent systems through a blend of rigorous research and high-performance software engineering.",
+    description: "Specializing in power electronics and high-performance hardware through advanced research and systems engineering.",
     images: ["/IMG_0741.jpg"],
   },
   robots: {

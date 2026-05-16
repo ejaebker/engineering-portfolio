@@ -68,7 +68,7 @@ export default function Home() {
                 </motion.div>
 
                 <p className="text-xl md:text-2xl text-[var(--text-secondary)] leading-relaxed max-w-xl font-light mx-auto md:mx-0 text-measure">
-                  Architecting intelligent systems through a blend of rigorous research and high-performance software engineering.
+                  Architecting intelligent systems through a blend of rigorous research and high-performance engineering.
                 </p>
 
                 <motion.div 
@@ -179,10 +179,10 @@ export default function Home() {
             <div className="flex-1 md:pt-24 space-y-24 md:space-y-32 md:pl-12">
               <div className="space-y-10 md:space-y-12 text-xl md:text-3xl lg:text-4xl text-[var(--text-secondary)] font-light leading-tight max-w-3xl">
                 <p className="transition-all duration-700">
-                  I specialize in the architectural optimization of intelligent systems, with a particular focus on the intersection of hardware constraints and high-performance computing.
+                  I specialize in the architectural optimization of power electronic systems, focusing on the intersection of high-efficiency energy conversion and advanced control algorithms.
                 </p>
                 <p>
-                  Currently, my research at Purdue University explores scalable machine learning architectures and efficient signal processing pipelines designed for real-world reliability.
+                  As a Research Assistant at Purdue University in the lab of Professor Euzeli dos Santos, my work centers on developing scalable power electronics solutions and high-performance control strategies for real-world reliability.
                 </p>
               </div>
 
@@ -195,12 +195,12 @@ export default function Home() {
                 
                 <div className="space-y-4 md:w-1/3">
                   <div className="type-meta">FOCUS_02</div>
-                  <div className="text-xl font-bold text-[var(--text-primary)] tracking-tighter uppercase leading-none">Machine<br />Learning</div>
+                  <div className="text-xl font-bold text-[var(--text-primary)] tracking-tighter uppercase leading-none">Power<br />Electronics</div>
                 </div>
 
                 <div className="space-y-4 md:w-1/3">
                   <div className="type-meta">FOCUS_03</div>
-                  <div className="text-xl font-bold text-[var(--text-primary)] tracking-tighter uppercase leading-none">Signal<br />Processing</div>
+                  <div className="text-xl font-bold text-[var(--text-primary)] tracking-tighter uppercase leading-none">Control<br />Systems</div>
                 </div>
               </div>
             </div>
@@ -240,7 +240,7 @@ export default function Home() {
                 <div className="type-meta leading-relaxed">
                   Contributing to the<br />
                   next generation of<br />
-                  intelligent systems.
+                  power electronics.
                 </div>
               </div>
 
@@ -323,7 +323,7 @@ export default function Home() {
         <footer className="pt-20 pb-10 text-[10px] font-mono text-[var(--text-muted)] tracking-[0.2em] flex justify-between items-center border-t border-[var(--divider)]">
           <p>© {new Date().getFullYear()} ERIC JAEBKER</p>
           <div className="flex gap-8">
-            <span className="hover:text-[var(--text-primary)] transition-colors cursor-default">SYSTEMS_ENGINEER</span>
+            <span className="hover:text-[var(--text-primary)] transition-colors cursor-default">POWER_ELECTRONICS</span>
             <span className="hover:text-[var(--text-primary)] transition-colors cursor-default">PURDUE_RESEARCH</span>
           </div>
         </footer>
