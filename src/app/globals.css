@@ -112,6 +112,11 @@ body {
   color: var(--text-muted);
 }
 
+html:not(.dark) .type-meta {
+  color: var(--text-secondary); /* Darker in light mode for better contrast */
+  opacity: 0.8;
+}
+
 .text-measure {
   max-width: 65ch; /* Optimal line length for readability */
 }

@@ -20,7 +20,7 @@ export default function Home() {
     <div className="relative pb-20">
       <Navbar />
 
-      <main id="main-content" className="max-w-[1600px] mx-auto px-8 md:px-16 lg:px-24 pt-20 md:pt-28 space-y-32 md:space-y-48 scroll-smooth">
+      <main id="main-content" className="max-w-[1600px] mx-auto px-8 md:px-16 lg:px-24 pt-20 md:pt-28 space-y-32 md:space-y-48 scroll-smooth content-transition">
         {/* HERO SECTION */}
         <AnimatedSection className="relative min-h-[90vh] flex flex-col justify-center" id="home">
           <div className="grid lg:grid-cols-[1.4fr_0.6fr] gap-12 lg:gap-0 items-center relative">
