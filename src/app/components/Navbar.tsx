@@ -6,6 +6,7 @@ import ThemeToggle from './ThemeToggle';
 import DodecahedronLogo from './DodecahedronLogo';
 import { useEffect, useState, useCallback, memo } from 'react';
 import { useRouter } from 'next/navigation';
+import type { Route } from 'next';
 
 const Navbar = memo(function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
@@ -24,7 +25,7 @@ const Navbar = memo(function Navbar() {
         startViewTransition: (callback: () => void) => void 
       };
       docWithTransition.startViewTransition(() => {
-        router.push(href);
+        router.push(href as Route);
       });
     }
   }, [router]);
@@ -181,7 +182,7 @@ const NavLink = memo(function NavLink({
 
   return (
     <Link 
-      href={fullHref} 
+      href={fullHref as Route} 
       onClick={(e) => onNavigate(e, fullHref)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
