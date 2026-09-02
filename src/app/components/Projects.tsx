@@ -6,21 +6,11 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import PerspectiveCard from './PerspectiveCard';
 
+import { projects } from '../data/projects';
+
 const Projects = memo(function Projects() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
-
-  const projects = useMemo(() => [
-    {
-      id: 1,
-      title: "Engineering Portfolio",
-      description: "An expressive editorial portfolio designed with sophisticated typography and organic motion. Built using Next.js 15 and TypeScript, the project was developed in collaboration with Gemini CLI for a seamless user experience.",
-      image: "/portfolio.png",
-      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Gemini CLI"],
-      link: "https://github.com/ejaebker/engineering-portfolio",
-      year: 2026,
-    },
-  ], []);
 
   const handleNext = () => {
     setDirection(1);

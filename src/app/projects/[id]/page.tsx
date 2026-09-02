@@ -2,43 +2,17 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '../../components/Navbar';
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  technologies: string[];
-  link: string;
-  year: number;
-  fullDescription: string;
-  challenges: string;
-  outcome: string;
+import { projects } from '../../data/projects';
+
+export async function generateStaticParams() {
+  return projects.map((p) => ({
+    id: p.id.toString(),
+  }));
 }
-
-const projects: Record<string, Project> = {
-  '1': {
-    id: 1,
-    title: "Engineering Portfolio",
-    description: "An expressive editorial portfolio designed with sophisticated typography and organic motion. Built using Next.js 15, TypeScript, and Framer Motion for a seamless, high-performance user experience.",
-    image: "/portfolio.png",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js"],
-    link: "https://github.com/ejaebker/engineering-portfolio",
-    year: 2026,
-    fullDescription: `Built using Next.js 15, TypeScript, and Framer Motion, this portfolio serves as a technical demonstration of modern web standards and high-performance frontend architecture. The project was developed in collaboration with Gemini CLI, leveraging AI-driven orchestration to accelerate the transition from architectural concept to a polished, production-ready interface.
-
-Key technical features include:
-- AI-Augmented Workflow: Developed using Gemini CLI for rapid prototyping, strategic refactoring, and complex state management.
-- Custom Cursor System: Intelligent, reactive cursor that adapts to interactive elements.
-- Organic Motion Engine: Custom Framer Motion configurations for smooth, non-linear transitions.
-- Responsive Architecture: Fluid layouts that maintain typographic integrity across all device scales.`,
-    challenges: "The primary challenge was balancing complex visual effects and motion with high performance and accessibility standards. Utilizing Gemini CLI allowed for efficient experimentation with non-linear animations while ensuring that high-contrast typography remained performant across different devices.",
-    outcome: "Successfully created a unique, high-impact digital identity that reflects technical maturity and design-forward thinking, achieving high Lighthouse scores while maintaining a rich, immersive aesthetic.",
-  },
-};
 
 export default async function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const project = projects[id];
+  const project = projects.find((p) => p.id.toString() === id);
 
   if (!project) {
     return (
